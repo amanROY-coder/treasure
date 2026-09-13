@@ -5,11 +5,12 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Clue | Tech Treasure Hunt</title>
 
+    <!-- QR SCANNER LIBRARY -->
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 
     <style>
 
@@ -19,7 +20,6 @@
             box-sizing: border-box;
             font-family: Arial, Helvetica, sans-serif;
         }
-
 
         body {
 
@@ -88,7 +88,6 @@
                 floatBubble 8s ease-in-out infinite;
         }
 
-
         .bubble::after {
 
             content: "";
@@ -111,14 +110,12 @@
             transform: rotate(-25deg);
         }
 
-
         .bubble1 {
             width: 150px;
             height: 150px;
             top: 3%;
             right: 4%;
         }
-
 
         .bubble2 {
             width: 75px;
@@ -128,7 +125,6 @@
             animation-delay: 1s;
         }
 
-
         .bubble3 {
             width: 55px;
             height: 55px;
@@ -136,7 +132,6 @@
             left: 3%;
             animation-delay: 2s;
         }
-
 
         .bubble4 {
             width: 95px;
@@ -146,7 +141,6 @@
             animation-delay: 3s;
         }
 
-
         .bubble5 {
             width: 65px;
             height: 65px;
@@ -154,7 +148,6 @@
             left: 13%;
             animation-delay: 4s;
         }
-
 
         .bubble6 {
             width: 180px;
@@ -164,7 +157,6 @@
             animation-delay: 2s;
         }
 
-
         .bubble7 {
             width: 120px;
             height: 120px;
@@ -172,7 +164,6 @@
             left: -40px;
             animation-delay: 5s;
         }
-
 
         @keyframes floatBubble {
 
@@ -281,7 +272,6 @@
             margin-bottom: 30px;
         }
 
-
         .team-badge {
 
             display: flex;
@@ -303,7 +293,6 @@
             font-weight: 700;
         }
 
-
         .team-icon {
 
             width: 35px;
@@ -324,7 +313,6 @@
                 );
         }
 
-
         .score-box {
 
             padding: 10px 18px;
@@ -340,7 +328,6 @@
                 1px solid rgba(120,140,220,0.30);
         }
 
-
         .score-label {
 
             font-size: 11px;
@@ -349,7 +336,6 @@
 
             margin-bottom: 2px;
         }
-
 
         .score {
 
@@ -372,7 +358,7 @@
 
 
         /* =========================
-           SUCCESS ICON
+           SUCCESS
         ========================== */
 
         .success-icon {
@@ -403,6 +389,21 @@
 
             box-shadow:
                 0 0 40px rgba(90,100,255,0.25);
+
+            animation: targetPulse 2s infinite;
+        }
+
+        @keyframes targetPulse {
+
+            0%, 100% {
+                box-shadow:
+                    0 0 30px rgba(90,100,255,0.25);
+            }
+
+            50% {
+                box-shadow:
+                    0 0 55px rgba(130,90,255,0.55);
+            }
         }
 
 
@@ -420,7 +421,6 @@
 
             margin-bottom: 10px;
         }
-
 
         h1 {
 
@@ -445,7 +445,6 @@
 
             color: transparent;
         }
-
 
         .message {
 
@@ -492,7 +491,6 @@
             overflow: hidden;
         }
 
-
         .clue-box::after {
 
             content: "📍";
@@ -507,7 +505,6 @@
             opacity: 0.10;
         }
 
-
         .clue-label {
 
             font-size: 12px;
@@ -520,7 +517,6 @@
 
             margin-bottom: 12px;
         }
-
 
         #clueText {
 
@@ -554,9 +550,8 @@
             border:
                 1px solid rgba(120,140,210,0.25);
 
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
-
 
         .instruction-title {
 
@@ -569,7 +564,6 @@
             color: #e7eaff;
         }
 
-
         .instruction p {
 
             color: #b9c3e0;
@@ -580,27 +574,179 @@
         }
 
 
-        .scan-highlight {
+        /* =========================
+           SCAN BUTTON
+        ========================== */
 
-            display: inline-block;
+        .scan-button {
 
-            margin-top: 12px;
+            width: 100%;
 
-            padding: 9px 14px;
+            border: none;
 
-            border-radius: 10px;
+            padding: 17px 20px;
+
+            border-radius: 15px;
+
+            margin-top: 16px;
+
+            cursor: pointer;
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: 800;
+
+            letter-spacing: 0.3px;
 
             background:
-                rgba(75,90,200,0.25);
+                linear-gradient(
+                    135deg,
+                    #1976ff,
+                    #7548ff,
+                    #c53dff
+                );
+
+            box-shadow:
+                0 12px 30px rgba(70,80,255,0.30);
+
+            transition: 0.25s ease;
+        }
+
+        .scan-button:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 17px 40px rgba(100,80,255,0.45);
+        }
+
+        .scan-button:active {
+
+            transform: scale(0.98);
+        }
+
+
+        /* =========================
+           SCANNER POPUP
+        ========================== */
+
+        .scanner-overlay {
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(2,5,20,0.92);
+
+            backdrop-filter: blur(12px);
+
+            z-index: 100;
+
+            display: none;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 18px;
+        }
+
+        .scanner-overlay.active {
+
+            display: flex;
+        }
+
+        .scanner-box {
+
+            width: 100%;
+
+            max-width: 500px;
+
+            padding: 22px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #111b3d,
+                    #18143e
+                );
 
             border:
-                1px solid rgba(110,130,255,0.30);
+                1px solid rgba(110,140,255,0.40);
 
-            color: #aebdff;
+            box-shadow:
+                0 30px 100px rgba(0,0,0,0.65);
+        }
+
+        .scanner-title {
+
+            text-align: center;
+
+            font-size: 25px;
+
+            font-weight: 800;
+
+            margin-bottom: 7px;
+        }
+
+        .scanner-subtitle {
+
+            text-align: center;
+
+            color: #aeb9dc;
 
             font-size: 13px;
 
+            margin-bottom: 18px;
+        }
+
+        #reader {
+
+            width: 100%;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            background: #050816;
+        }
+
+        #reader video {
+
+            border-radius: 15px;
+        }
+
+        .close-scanner {
+
+            width: 100%;
+
+            margin-top: 17px;
+
+            padding: 14px;
+
+            border-radius: 13px;
+
+            border: 1px solid rgba(255,255,255,0.15);
+
+            background: rgba(255,255,255,0.07);
+
+            color: white;
+
+            font-size: 15px;
+
             font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .close-scanner:hover {
+
+            background: rgba(255,255,255,0.12);
         }
 
 
@@ -617,7 +763,7 @@
 
             gap: 9px;
 
-            margin-top: 10px;
+            margin-top: 15px;
 
             color: #8ff0c0;
 
@@ -625,7 +771,6 @@
 
             font-weight: 700;
         }
-
 
         .status-dot {
 
@@ -648,7 +793,6 @@
         @media(max-width: 700px) {
 
             .page {
-
                 padding: 18px 10px;
             }
 
@@ -716,6 +860,18 @@
                 height: 120px;
             }
 
+            .scanner-box {
+
+                padding: 15px;
+
+                border-radius: 20px;
+            }
+
+            .scanner-title {
+
+                font-size: 21px;
+            }
+
         }
 
     </style>
@@ -726,7 +882,7 @@
 <body>
 
 
-    <!-- Background bubbles -->
+    <!-- BACKGROUND BUBBLES -->
 
     <div class="bubble bubble1"></div>
     <div class="bubble bubble2"></div>
@@ -765,8 +921,7 @@
                         SCORE
                     </div>
 
-                    <div class="score"
-                        id="score">
+                    <div class="score" id="score">
                         0
                     </div>
 
@@ -793,8 +948,10 @@
 
 
             <p class="message">
+
                 You solved the challenge.
                 Your next destination is hidden in the clue below.
+
             </p>
 
 
@@ -806,7 +963,6 @@
                     📍 YOUR NEXT CLUE
                 </div>
 
-
                 <div id="clueText">
                     Loading clue...
                 </div>
@@ -814,7 +970,7 @@
             </div>
 
 
-            <!-- INSTRUCTIONS -->
+            <!-- INSTRUCTION -->
 
             <div class="instruction">
 
@@ -822,18 +978,25 @@
                     🧭 What to do next?
                 </div>
 
-
                 <p>
+
                     Follow the clue and reach the
                     correct location on campus.
                     Look for the hidden QR code
                     placed at that location.
+
                 </p>
 
 
-                <div class="scan-highlight">
-                    📱 Scan the location QR code to continue
-                </div>
+                <!-- SCAN BUTTON -->
+
+                <button
+                    class="scan-button"
+                    onclick="openScanner()">
+
+                    📷 SCAN LOCATION QR CODE
+
+                </button>
 
             </div>
 
@@ -852,6 +1015,44 @@
         </section>
 
     </main>
+
+
+    <!-- =========================
+         QR SCANNER POPUP
+    ========================== -->
+
+    <div
+        class="scanner-overlay"
+        id="scannerOverlay">
+
+        <div class="scanner-box">
+
+            <div class="scanner-title">
+                📷 Scan QR Code
+            </div>
+
+            <div class="scanner-subtitle">
+
+                Point your camera at the QR code
+                placed at this location.
+
+            </div>
+
+
+            <div id="reader"></div>
+
+
+            <button
+                class="close-scanner"
+                onclick="closeScanner()">
+
+                ✕ Close Scanner
+
+            </button>
+
+        </div>
+
+    </div>
 
 
     <!-- =========================
@@ -907,6 +1108,7 @@
 
             measurementId:
                 "G-C6EFHJDQJN"
+
         };
 
 
@@ -976,6 +1178,7 @@
                         "index.html";
 
                     return;
+
                 }
 
 
@@ -983,20 +1186,20 @@
                     snapshot.data();
 
 
-                /* Team */
+                /* TEAM */
 
                 teamNameElement.textContent =
                     team.name || "Team";
 
 
-                /* Score */
+                /* SCORE */
 
                 scoreElement.textContent =
                     (team.score || 0) +
                     " pts";
 
 
-                /* Clue */
+                /* CLUE */
 
                 if (team.lastHint) {
 
@@ -1030,7 +1233,176 @@
 
         loadResult();
 
+
+        /* =========================
+           QR SCANNER
+        ========================== */
+
+        let html5QrCode = null;
+
+
+        window.openScanner = async function () {
+
+            const overlay =
+                document.getElementById("scannerOverlay");
+
+
+            overlay.classList.add("active");
+
+
+            html5QrCode =
+                new Html5Qrcode("reader");
+
+
+            try {
+
+                await html5QrCode.start(
+
+                    {
+                        facingMode: "environment"
+                    },
+
+                    {
+                        fps: 10,
+
+                        qrbox: {
+                            width: 250,
+                            height: 250
+                        }
+
+                    },
+
+                    (decodedText) => {
+
+                        console.log(
+                            "QR Scanned:",
+                            decodedText
+                        );
+
+
+                        stopScannerAndOpen(decodedText);
+
+                    },
+
+                    (errorMessage) => {
+
+                        // Normal scanning errors.
+                        // No need to show them.
+
+                    }
+
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Camera error:",
+                    error
+                );
+
+                alert(
+                    "Unable to open camera. Please allow camera permission and try again."
+                );
+
+                overlay.classList.remove("active");
+
+            }
+
+        };
+
+
+        /* =========================
+           STOP + OPEN QR URL
+        ========================== */
+
+        async function stopScannerAndOpen(url) {
+
+            try {
+
+                if (html5QrCode) {
+
+                    await html5QrCode.stop();
+
+                    html5QrCode.clear();
+
+                }
+
+            }
+
+            catch (error) {
+
+                console.log(error);
+
+            }
+
+
+            /*
+             * The QR contains a URL like:
+             *
+             * https://treasurehuntdiet.netlify.app/
+             * scan.html?location=computer_lab
+             *
+             * Open that URL automatically.
+             */
+
+            if (
+                url.startsWith("http://") ||
+                url.startsWith("https://")
+            ) {
+
+                window.location.href = url;
+
+            }
+
+            else {
+
+                alert(
+                    "Invalid QR Code. Please scan the official Treasure Hunt QR."
+                );
+
+            }
+
+        }
+
+
+        /* =========================
+           CLOSE SCANNER
+        ========================== */
+
+        window.closeScanner = async function () {
+
+            try {
+
+                if (html5QrCode) {
+
+                    await html5QrCode.stop();
+
+                    html5QrCode.clear();
+
+                    html5QrCode = null;
+
+                }
+
+            }
+
+            catch (error) {
+
+                console.log(error);
+
+            }
+
+
+            document
+                .getElementById("scannerOverlay")
+                .classList.remove("active");
+
+        };
+
+
     </script>
+
 
 </body>
 
