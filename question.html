@@ -2,1697 +2,1976 @@
 <html lang="en">
 
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
+<title>Challenge | Tech Treasure Hunt</title>
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
 
-    <title>Question | Tech Treasure Hunt</title>
+<style>
 
+/* =========================================
+   QUESTION PAGE PREMIUM DESIGN
+========================================= */
 
-    <style>
+body {
+    overflow-x: hidden;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+/* ---------- FLOATING BUBBLES ---------- */
 
+.bg-bubble {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
 
-        body {
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(255,255,255,0.25),
+            rgba(80,80,255,0.08) 35%,
+            rgba(120,40,255,0.10) 70%,
+            transparent 72%
+        );
 
-            min-height: 100vh;
+    border: 1px solid rgba(255,255,255,0.08);
 
-            color: white;
+    box-shadow:
+        0 0 40px rgba(80,100,255,0.15);
+}
 
-            background:
-                radial-gradient(
-                    circle at 10% 15%,
-                    rgba(30, 80, 220, 0.35),
-                    transparent 25%
-                ),
+.bubble1 {
+    width: 170px;
+    height: 170px;
+    top: 8%;
+    left: -50px;
+}
 
-                radial-gradient(
-                    circle at 90% 75%,
-                    rgba(120, 30, 220, 0.35),
-                    transparent 30%
-                ),
+.bubble2 {
+    width: 140px;
+    height: 140px;
+    right: 5%;
+    top: 12%;
+}
 
-                linear-gradient(
-                    135deg,
-                    #050a20,
-                    #09133a,
-                    #170b3d
-                );
+.bubble3 {
+    width: 90px;
+    height: 90px;
+    left: 8%;
+    bottom: 18%;
+}
 
-            overflow-x: hidden;
+.bubble4 {
+    width: 170px;
+    height: 170px;
+    right: -50px;
+    bottom: -20px;
+}
 
-            position: relative;
-        }
 
+/* ---------- MAIN CONTAINER ---------- */
 
-        /* =========================
-           BACKGROUND BUBBLES
-        ========================== */
+.question-page {
+    width: 100%;
+    min-height: 100vh;
 
-        .bubble {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 
-            position: fixed;
+    padding: 35px 20px;
+}
 
-            border-radius: 50%;
 
-            pointer-events: none;
+/* ---------- MAIN CARD ---------- */
 
-            z-index: 0;
+.question-card {
 
-            background:
-                radial-gradient(
-                    circle at 30% 25%,
-                    rgba(255,255,255,0.32),
-                    rgba(40,130,255,0.25) 25%,
-                    rgba(110,50,255,0.28) 55%,
-                    rgba(240,40,220,0.18) 75%,
-                    transparent
-                );
+    width: 100%;
+    max-width: 900px;
 
-            border:
-                1px solid rgba(255,255,255,0.14);
+    padding: 40px;
 
-            box-shadow:
-                inset -15px -15px 35px rgba(0,0,0,0.25),
-                0 0 40px rgba(70,100,255,0.20);
+    border-radius: 28px;
 
-            animation:
-                floatBubble 8s ease-in-out infinite;
-        }
+    background:
+        linear-gradient(
+            145deg,
+            rgba(35,43,76,0.92),
+            rgba(20,25,52,0.92)
+        );
 
+    border: 1px solid rgba(255,255,255,0.14);
 
-        .bubble::after {
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
 
-            content: "";
+    box-shadow:
+        0 30px 100px rgba(0,0,0,0.5),
+        inset 0 1px 1px rgba(255,255,255,0.08);
 
-            position: absolute;
+    position: relative;
+}
 
-            width: 25%;
-            height: 15%;
 
-            top: 17%;
-            left: 22%;
+/* ---------- TOP ---------- */
 
-            border-radius: 50%;
+.top-row {
 
-            background:
-                rgba(255,255,255,0.35);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-            filter: blur(5px);
+    margin-bottom: 30px;
+}
 
-            transform: rotate(-25deg);
-        }
 
+/* ---------- TEAM BADGE ---------- */
 
-        .bubble1 {
+.team-badge {
 
-            width: 150px;
-            height: 150px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
-            top: 3%;
-            right: 4%;
-        }
+    padding: 12px 18px;
 
+    border-radius: 15px;
 
-        .bubble2 {
+    background: rgba(255,255,255,0.06);
 
-            width: 75px;
-            height: 75px;
+    border: 1px solid rgba(255,255,255,0.13);
 
-            top: 27%;
-            left: 10%;
+    font-weight: 700;
 
-            animation-delay: 1s;
-        }
+    color: white;
 
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.15);
+}
 
-        .bubble3 {
+.team-icon {
 
-            width: 55px;
-            height: 55px;
+    width: 34px;
+    height: 34px;
 
-            top: 55%;
-            left: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-            animation-delay: 2s;
-        }
+    border-radius: 10px;
 
+    background:
+        linear-gradient(
+            135deg,
+            #4f7fff,
+            #a844ff
+        );
 
-        .bubble4 {
+    font-size: 17px;
+}
 
-            width: 90px;
-            height: 90px;
 
-            top: 35%;
-            right: 8%;
+/* ---------- LEVEL ---------- */
 
-            animation-delay: 3s;
-        }
+.level-badge {
 
+    padding: 13px 25px;
 
-        .bubble5 {
+    border-radius: 30px;
 
-            width: 65px;
-            height: 65px;
+    background:
+        linear-gradient(
+            135deg,
+            #09cfff,
+            #7740ff
+        );
 
-            bottom: 15%;
-            left: 12%;
+    font-weight: 800;
 
-            animation-delay: 4s;
-        }
+    font-size: 16px;
 
+    box-shadow:
+        0 8px 30px rgba(70,100,255,0.35);
 
-        .bubble6 {
+    letter-spacing: 0.5px;
+}
 
-            width: 180px;
-            height: 180px;
 
-            bottom: -50px;
-            right: -30px;
+/* ---------- LOGO ---------- */
 
-            animation-delay: 2s;
-        }
+.question-logo {
 
+    width: 86px;
+    height: 86px;
 
-        .bubble7 {
+    margin: 0 auto 20px;
 
-            width: 120px;
-            height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-            bottom: 3%;
-            left: -40px;
+    border-radius: 50%;
 
-            animation-delay: 5s;
-        }
+    background:
+        rgba(255,255,255,0.06);
 
+    border: 1px solid rgba(255,255,255,0.15);
 
-        @keyframes floatBubble {
+    font-size: 42px;
 
-            0%, 100% {
-                transform: translateY(0);
-            }
+    box-shadow:
+        0 0 45px rgba(80,120,255,0.22);
+}
 
-            50% {
-                transform: translateY(-18px);
-            }
 
-        }
+/* ---------- TITLE ---------- */
 
+.page-title {
 
-        /* =========================
-           MAIN
-        ========================== */
+    text-align: center;
 
-        .page {
+    font-size: 42px;
 
-            min-height: 100vh;
+    font-weight: 900;
 
-            display: flex;
+    letter-spacing: 1px;
 
-            justify-content: center;
-            align-items: center;
+    margin-bottom: 8px;
 
-            padding: 35px 15px;
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #9ebaff,
+            #d38cff
+        );
 
-            position: relative;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
-            z-index: 2;
-        }
 
+/* ---------- SUBTITLE ---------- */
 
-        .quiz-card {
+.page-subtitle {
 
-            width: 100%;
+    text-align: center;
 
-            max-width: 900px;
+    color: #9da9cc;
 
-            padding: 38px;
+    font-size: 14px;
 
-            border-radius: 28px;
+    margin-bottom: 35px;
+}
 
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(20,35,80,0.82),
-                    rgba(18,18,55,0.78)
-                );
 
-            border:
-                1px solid rgba(110,150,255,0.38);
+/* ---------- CHALLENGE LABEL ---------- */
 
-            backdrop-filter:
-                blur(20px);
+.challenge-label {
 
-            -webkit-backdrop-filter:
-                blur(20px);
+    text-align: center;
 
-            box-shadow:
-                0 30px 80px rgba(0,0,0,0.45),
-                0 0 50px rgba(70,80,255,0.12);
+    color: #91a5df;
 
-            position: relative;
+    font-size: 12px;
 
-            overflow: hidden;
-        }
+    font-weight: 800;
 
+    letter-spacing: 3px;
 
-        .quiz-card::before {
+    margin-bottom: 15px;
+}
 
-            content: "";
 
-            position: absolute;
+/* ---------- QUESTION BOX ---------- */
 
-            top: 0;
-            left: 0;
-            right: 0;
+.question-container {
 
-            height: 2px;
+    padding: 30px 25px;
 
-            background:
-                linear-gradient(
-                    90deg,
-                    #168cff,
-                    #704cff,
-                    #e840ff
-                );
-        }
+    border-radius: 20px;
 
+    background:
+        linear-gradient(
+            145deg,
+            rgba(8,12,28,0.65),
+            rgba(20,25,50,0.65)
+        );
 
-        /* =========================
-           TOP BAR
-        ========================== */
+    border: 1px solid rgba(255,255,255,0.10);
 
-        .top-bar {
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.04);
 
-            display: flex;
+    margin-bottom: 25px;
+}
 
-            justify-content: space-between;
 
-            align-items: center;
+#questionText {
 
-            margin-bottom: 28px;
-        }
+    color: #f4f6ff;
 
+    text-align: center;
 
-        .team-badge {
+    font-size: 23px;
 
-            display: flex;
+    line-height: 1.55;
 
-            align-items: center;
+    font-weight: 700;
+}
 
-            gap: 10px;
 
-            padding: 12px 18px;
+/* ---------- OPTIONS ---------- */
 
-            border-radius: 14px;
+.options-container {
 
-            background:
-                rgba(70,70,150,0.28);
+    display: flex;
 
-            border:
-                1px solid rgba(130,110,255,0.30);
+    flex-direction: column;
 
-            color: #f1f3ff;
+    gap: 14px;
 
-            font-weight: 700;
-        }
+    margin-top: 25px;
+}
 
 
-        .team-icon {
+/* ---------- OPTION ---------- */
 
-            width: 35px;
-            height: 35px;
+.answer-option {
 
-            display: flex;
+    width: 100%;
 
-            align-items: center;
-            justify-content: center;
+    min-height: 70px;
 
-            border-radius: 10px;
+    padding: 12px 18px;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #566cff,
-                    #9c45ff
-                );
+    display: flex;
 
-            font-size: 17px;
-        }
+    align-items: center;
 
+    gap: 15px;
 
-        .level-box {
+    border-radius: 16px;
 
-            min-width: 80px;
+    background:
+        rgba(255,255,255,0.045);
 
-            padding: 10px 15px;
+    border: 1px solid rgba(255,255,255,0.12);
 
-            border-radius: 14px;
+    color: white;
 
-            text-align: center;
+    cursor: pointer;
 
-            background:
-                rgba(80,90,140,0.28);
+    text-align: left;
 
-            border:
-                1px solid rgba(150,160,220,0.25);
-        }
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border 0.2s ease,
+        box-shadow 0.2s ease;
+}
 
 
-        .level-label {
+.answer-option:hover {
 
-            font-size: 12px;
+    transform: translateX(5px);
 
-            color: #c1c8e7;
+    background:
+        rgba(90,110,255,0.12);
 
-            margin-bottom: 3px;
-        }
+    border-color:
+        rgba(100,140,255,0.55);
 
+    box-shadow:
+        0 8px 25px rgba(70,90,255,0.12);
+}
 
-        .level-number {
 
-            font-size: 23px;
+/* ---------- LETTER ---------- */
 
-            font-weight: 800;
-        }
+.answer-letter {
 
+    min-width: 45px;
+    height: 45px;
 
-        /* =========================
-           HEADER
-        ========================== */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-        .brain {
+    border-radius: 12px;
 
-            width: 70px;
-            height: 70px;
+    background:
+        rgba(90,115,255,0.14);
 
-            margin: 0 auto 12px;
+    color: #a9baff;
 
-            display: flex;
+    font-size: 16px;
 
-            justify-content: center;
-            align-items: center;
+    font-weight: 800;
 
-            border-radius: 50%;
+    border: 1px solid rgba(120,140,255,0.12);
+}
 
-            font-size: 38px;
 
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(255,100,190,0.20),
-                    rgba(40,100,255,0.12)
-                );
+/* ---------- TEXT ---------- */
 
-            border:
-                1px solid rgba(100,140,255,0.35);
+.answer-text {
 
-            box-shadow:
-                0 0 35px rgba(80,100,255,0.22);
-        }
+    font-size: 16px;
 
+    line-height: 1.4;
 
-        .challenge-label {
+    color: #e3e8fa;
+}
 
-            text-align: center;
 
-            font-size: 14px;
+/* ---------- SELECTED ---------- */
 
-            letter-spacing: 4px;
+.answer-option.selected {
 
-            font-weight: 700;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(65,115,255,0.25),
+            rgba(135,65,255,0.20)
+        );
 
-            color: #8298d4;
+    border-color:
+        #668cff;
 
-            margin-bottom: 25px;
-        }
+    box-shadow:
+        0 0 25px rgba(75,110,255,0.18);
+}
 
 
-        /* =========================
-           QUESTION BOX
-        ========================== */
+.answer-option.selected .answer-letter {
 
-        .question-box {
+    background:
+        linear-gradient(
+            135deg,
+            #4d7fff,
+            #8a45ff
+        );
 
-            padding: 27px;
+    color: white;
 
-            border-radius: 20px;
+    box-shadow:
+        0 5px 15px rgba(80,100,255,0.3);
+}
 
-            border:
-                1px solid rgba(80,130,255,0.55);
 
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(20,45,120,0.45),
-                    rgba(45,20,110,0.35)
-                );
+/* =========================================
+   SUBMIT BUTTON
+========================================= */
 
-            box-shadow:
-                inset 0 0 30px rgba(80,80,255,0.07),
-                0 0 25px rgba(70,90,255,0.08);
+#submitAnswer {
 
-            margin-bottom: 20px;
-        }
+    width: 100%;
 
+    height: 65px;
 
-        .question-number {
+    margin-top: 28px;
 
-            display: inline-flex;
+    border: none;
 
-            align-items: center;
-            justify-content: center;
+    border-radius: 15px;
 
-            min-width: 52px;
-            height: 38px;
+    background:
+        linear-gradient(
+            135deg,
+            #2478ff,
+            #a93cff
+        );
 
-            padding: 0 14px;
+    color: white;
 
-            border-radius: 20px;
+    font-size: 18px;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #553cff,
-                    #9d3cff
-                );
+    font-weight: 800;
 
-            font-weight: 800;
+    letter-spacing: 0.5px;
 
-            font-size: 14px;
+    cursor: pointer;
 
-            margin-bottom: 15px;
+    box-shadow:
+        0 12px 35px rgba(80,80,255,0.30);
 
-            box-shadow:
-                0 0 20px rgba(100,60,255,0.30);
-        }
+    transition: 0.2s ease;
+}
 
 
-        #questionText {
+#submitAnswer:hover {
 
-            font-size: 29px;
+    transform: translateY(-3px);
 
-            line-height: 1.35;
+    box-shadow:
+        0 18px 45px rgba(90,80,255,0.45);
+}
 
-            font-weight: 800;
 
-            color: #f7f8ff;
-        }
+#submitAnswer:active {
 
+    transform: translateY(0);
+}
 
-        /* =========================
-           OPTIONS
-        ========================== */
 
-        .options {
+#submitAnswer:disabled {
 
-            display: flex;
+    opacity: 0.45;
 
-            flex-direction: column;
+    cursor: not-allowed;
 
-            gap: 12px;
+    transform: none;
 
-            margin-top: 20px;
-        }
+    box-shadow: none;
+}
 
 
-        .option {
+/* ---------- PROGRESS ---------- */
 
-            width: 100%;
+.progress-section {
 
-            min-height: 68px;
+    margin-top: 25px;
 
-            padding: 10px 18px;
+    text-align: center;
 
-            display: flex;
+    color: #7986aa;
 
-            align-items: center;
+    font-size: 12px;
+}
 
-            gap: 15px;
 
-            border-radius: 17px;
+.progress-bar {
 
-            border:
-                1px solid rgba(110,130,190,0.28);
+    width: 100%;
 
-            background:
-                rgba(55,65,105,0.30);
+    height: 5px;
 
-            color: #e9edff;
+    margin-top: 10px;
 
-            cursor: pointer;
+    border-radius: 20px;
 
-            transition:
-                transform 0.2s,
-                border 0.2s,
-                background 0.2s,
-                box-shadow 0.2s;
-        }
+    background:
+        rgba(255,255,255,0.08);
 
+    overflow: hidden;
+}
 
-        .option:hover {
 
-            transform: translateX(4px);
+.progress-fill {
 
-            border-color:
-                rgba(100,140,255,0.65);
+    height: 100%;
 
-            background:
-                rgba(70,80,140,0.38);
-        }
+    width: 20%;
 
+    border-radius: 20px;
 
-        .option.selected {
+    background:
+        linear-gradient(
+            90deg,
+            #20cfff,
+            #9745ff
+        );
 
-            border-color:
-                #6b7dff;
+    transition: width 0.3s ease;
+}
 
-            background:
-                linear-gradient(
-                    90deg,
-                    rgba(50,110,255,0.35),
-                    rgba(130,45,255,0.32)
-                );
 
-            box-shadow:
-                0 0 22px rgba(70,100,255,0.18);
-        }
+/* =========================================
+   POPUP
+========================================= */
 
+.popup-overlay {
 
-        .option-letter {
+    position: fixed;
 
-            width: 42px;
-            height: 42px;
+    inset: 0;
 
-            flex-shrink: 0;
+    z-index: 1000;
 
-            display: flex;
+    display: flex;
 
-            justify-content: center;
-            align-items: center;
+    align-items: center;
 
-            border-radius: 50%;
+    justify-content: center;
 
-            background:
-                rgba(80,100,180,0.35);
+    padding: 20px;
 
-            color: #dce4ff;
+    background:
+        rgba(2,5,18,0.82);
 
-            font-weight: 800;
+    backdrop-filter: blur(10px);
 
-            font-size: 16px;
+    opacity: 0;
 
-            border:
-                1px solid rgba(120,140,220,0.25);
-        }
+    visibility: hidden;
 
+    transition: 0.25s ease;
+}
 
-        .option.selected .option-letter {
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #368cff,
-                    #8c3fff
-                );
+.popup-overlay.show {
 
-            box-shadow:
-                0 0 18px rgba(80,100,255,0.35);
-        }
+    opacity: 1;
 
+    visibility: visible;
+}
 
-        .option-text {
 
-            flex: 1;
+.popup-card {
 
-            font-size: 17px;
+    width: 100%;
 
-            font-weight: 600;
-        }
+    max-width: 450px;
 
+    padding: 35px 30px;
 
-        .radio {
+    border-radius: 25px;
 
-            width: 21px;
-            height: 21px;
+    text-align: center;
 
-            border-radius: 50%;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(36,43,78,0.98),
+            rgba(17,22,46,0.98)
+        );
 
-            border:
-                2px solid #587cff;
+    border: 1px solid rgba(255,255,255,0.14);
 
-            flex-shrink: 0;
+    box-shadow:
+        0 35px 100px rgba(0,0,0,0.6);
 
-            position: relative;
-        }
+    transform: scale(0.88);
 
+    transition: 0.25s ease;
+}
 
-        .option.selected .radio::after {
 
-            content: "";
+.popup-overlay.show .popup-card {
 
-            position: absolute;
+    transform: scale(1);
+}
 
-            width: 9px;
-            height: 9px;
 
-            border-radius: 50%;
+.popup-icon {
 
-            background: white;
+    font-size: 60px;
 
-            top: 50%;
-            left: 50%;
+    margin-bottom: 15px;
+}
 
-            transform:
-                translate(-50%, -50%);
 
-            box-shadow:
-                0 0 10px white;
-        }
+.popup-card h2 {
 
+    font-size: 27px;
 
-        /* =========================
-           SUBMIT BUTTON
-        ========================== */
+    margin-bottom: 10px;
+}
 
-        #submitBtn {
 
-            display: block;
+.popup-card p {
 
-            width: 100% !important;
+    color: #aeb8d6;
 
-            min-width: 100% !important;
+    line-height: 1.6;
 
-            height: 62px;
+    font-size: 14px;
 
-            margin-top: 22px;
+    margin-bottom: 22px;
+}
 
-            padding: 0 25px;
 
-            border: none;
+/* ---------- POPUP BUTTON ---------- */
 
-            border-radius: 18px;
+.popup-button {
 
-            cursor: pointer;
+    width: 100%;
 
-            color: white;
+    height: 55px;
 
-            background:
-                linear-gradient(
-                    90deg,
-                    #238bff,
-                    #6350ff,
-                    #b63cff
-                );
+    border: none;
 
-            font-size: 18px;
+    border-radius: 13px;
 
-            font-weight: 800;
+    background:
+        linear-gradient(
+            135deg,
+            #4d7fff,
+            #9b3fff
+        );
 
-            letter-spacing: 0.5px;
+    color: white;
 
-            box-shadow:
-                0 15px 35px rgba(80,70,255,0.30);
+    font-size: 16px;
 
-            transition: 0.25s;
-        }
+    font-weight: 800;
 
+    cursor: pointer;
 
-        #submitBtn:hover {
+    transition: 0.2s;
+}
 
-            transform: translateY(-2px);
 
-            box-shadow:
-                0 18px 42px rgba(90,70,255,0.42);
-        }
+.popup-button:hover {
 
+    transform: translateY(-2px);
 
-        #submitBtn:disabled {
+    box-shadow:
+        0 10px 30px rgba(90,80,255,0.35);
+}
 
-            opacity: 0.55;
 
-            cursor: not-allowed;
+/* =========================================
+   MOBILE
+========================================= */
 
-            transform: none;
-        }
+@media(max-width:700px) {
 
+    .question-page {
 
-        /* =========================
-           POPUP
-        ========================== */
+        padding: 15px 10px;
+    }
 
-        .popup-overlay {
+    .question-card {
 
-            position: fixed;
+        padding: 25px 18px;
 
-            inset: 0;
+        border-radius: 22px;
+    }
 
-            display: none;
+    .page-title {
 
-            align-items: center;
+        font-size: 30px;
+    }
 
-            justify-content: center;
+    .question-logo {
 
-            padding: 20px;
+        width: 70px;
+        height: 70px;
 
-            background:
-                rgba(2,5,20,0.78);
+        font-size: 34px;
+    }
 
-            backdrop-filter:
-                blur(8px);
+    #questionText {
 
-            z-index: 100;
-        }
+        font-size: 18px;
+    }
 
+    .answer-option {
 
-        .popup-overlay.show {
+        min-height: 62px;
 
-            display: flex;
-        }
+        padding: 10px 12px;
+    }
 
+    .answer-letter {
 
-        .popup-card {
+        min-width: 38px;
+        height: 38px;
+    }
 
-            width: 100%;
+    .answer-text {
 
-            max-width: 500px;
+        font-size: 14px;
+    }
 
-            padding: 35px;
+    #submitAnswer {
 
-            text-align: center;
+        height: 60px;
 
-            border-radius: 25px;
+        font-size: 16px;
+    }
+}
 
-            background:
-                linear-gradient(
-                    145deg,
-                    #192858,
-                    #241653
-                );
 
-            border:
-                1px solid rgba(130,140,255,0.45);
+@media(max-width:450px) {
 
-            box-shadow:
-                0 30px 80px rgba(0,0,0,0.6);
-        }
+    .top-row {
 
+        margin-bottom: 22px;
+    }
 
-        .popup-icon {
+    .team-badge {
 
-            font-size: 55px;
+        padding: 9px 12px;
 
-            margin-bottom: 12px;
-        }
+        font-size: 13px;
+    }
 
+    .level-badge {
 
-        .popup-card h2 {
+        padding: 10px 15px;
 
-            font-size: 28px;
+        font-size: 13px;
+    }
 
-            margin-bottom: 10px;
-        }
+    .page-title {
 
+        font-size: 25px;
+    }
 
-        .popup-card p {
+    .question-container {
 
-            color: #cbd2ef;
+        padding: 22px 15px;
+    }
 
-            line-height: 1.6;
+    #questionText {
 
-            margin-bottom: 20px;
-        }
+        font-size: 17px;
+    }
+}
 
-
-        .hint-box {
-
-            padding: 18px;
-
-            margin-bottom: 20px;
-
-            border-radius: 15px;
-
-            background:
-                rgba(60,80,170,0.25);
-
-            border:
-                1px solid rgba(110,130,255,0.35);
-
-            color: #e8ecff;
-
-            font-weight: 700;
-        }
-
-
-        .popup-btn {
-
-            width: 100%;
-
-            height: 52px;
-
-            border: none;
-
-            border-radius: 14px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    #348cff,
-                    #9341ff
-                );
-
-            color: white;
-
-            font-size: 16px;
-
-            font-weight: 800;
-
-            cursor: pointer;
-        }
-
-
-        /* =========================
-           MOBILE
-        ========================== */
-
-        @media(max-width: 700px) {
-
-            .page {
-
-                padding: 18px 10px;
-            }
-
-            .quiz-card {
-
-                padding: 22px 16px;
-
-                border-radius: 22px;
-            }
-
-            .top-bar {
-
-                margin-bottom: 22px;
-            }
-
-            .team-badge {
-
-                padding: 9px 12px;
-
-                font-size: 13px;
-            }
-
-            .team-icon {
-
-                width: 30px;
-                height: 30px;
-            }
-
-            .level-box {
-
-                min-width: 65px;
-
-                padding: 8px 10px;
-            }
-
-            #questionText {
-
-                font-size: 21px;
-            }
-
-            .question-box {
-
-                padding: 20px;
-
-                border-radius: 17px;
-            }
-
-            .option {
-
-                min-height: 60px;
-
-                padding: 8px 12px;
-            }
-
-            .option-letter {
-
-                width: 37px;
-                height: 37px;
-            }
-
-            .option-text {
-
-                font-size: 15px;
-            }
-
-            #submitBtn {
-
-                height: 58px;
-
-                font-size: 16px;
-            }
-
-        }
-
-    </style>
+</style>
 
 </head>
 
 
 <body>
 
+<!-- BACKGROUND BUBBLES -->
 
-    <!-- Background -->
-
-    <div class="bubble bubble1"></div>
-    <div class="bubble bubble2"></div>
-    <div class="bubble bubble3"></div>
-    <div class="bubble bubble4"></div>
-    <div class="bubble bubble5"></div>
-    <div class="bubble bubble6"></div>
-    <div class="bubble bubble7"></div>
+<div class="bg-bubble bubble1"></div>
+<div class="bg-bubble bubble2"></div>
+<div class="bg-bubble bubble3"></div>
+<div class="bg-bubble bubble4"></div>
 
 
-    <main class="page">
+<div class="question-page">
 
-        <section class="quiz-card">
-
-
-            <!-- TOP BAR -->
-
-            <div class="top-bar">
-
-                <div class="team-badge">
-
-                    <div class="team-icon">
-                        💻
-                    </div>
-
-                    <span id="teamName">
-                        Team
-                    </span>
-
-                </div>
+<div class="question-card">
 
 
-                <div class="level-box">
+<!-- =========================================
+     TOP ROW
+========================================= -->
 
-                    <div class="level-label">
-                        Level
-                    </div>
+<div class="top-row">
 
-                    <div
-                        class="level-number"
-                        id="levelNumber">
-                        1
-                    </div>
+    <div class="team-badge">
 
-                </div>
-
-            </div>
-
-
-            <!-- HEADER -->
-
-            <div class="brain">
-                🧠
-            </div>
-
-
-            <div class="challenge-label">
-                TECH CHALLENGE
-            </div>
-
-
-            <!-- QUESTION -->
-
-            <div class="question-box">
-
-                <div
-                    class="question-number"
-                    id="questionNumber">
-                    Q1
-                </div>
-
-
-                <div id="questionText">
-                    Loading question...
-                </div>
-
-            </div>
-
-
-            <!-- OPTIONS -->
-
-            <div
-                class="options"
-                id="optionsContainer">
-            </div>
-
-
-            <!-- SUBMIT -->
-
-            <button
-                id="submitBtn"
-                disabled>
-
-                🚀 &nbsp; SUBMIT ANSWER &nbsp; →
-
-            </button>
-
-
-        </section>
-
-    </main>
-
-
-    <!-- =========================
-         RESULT POPUP
-    ========================== -->
-
-    <div
-        class="popup-overlay"
-        id="popup">
-
-        <div class="popup-card">
-
-            <div
-                class="popup-icon"
-                id="popupIcon">
-                🎉
-            </div>
-
-
-            <h2 id="popupTitle">
-                Correct!
-            </h2>
-
-
-            <p id="popupMessage">
-                Great job!
-            </p>
-
-
-            <div
-                class="hint-box"
-                id="hintBox"
-                style="display:none;">
-            </div>
-
-
-            <button
-                class="popup-btn"
-                id="popupButton">
-                CONTINUE →
-            </button>
-
+        <div class="team-icon">
+            👥
         </div>
+
+        <span id="teamName">
+            Team
+        </span>
 
     </div>
 
 
-    <!-- =========================
-         FIREBASE
-    ========================== -->
+    <div class="level-badge">
 
-    <script type="module">
+        LEVEL
+        <span id="levelNumber">
+            1
+        </span>
 
+    </div>
 
-        import {
-            initializeApp
-        }
-        from
-        "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+</div>
 
 
-        import {
+<!-- =========================================
+     HEADER
+========================================= -->
 
-            getFirestore,
+<div class="question-logo">
+    ⚡
+</div>
 
-            doc,
 
-            getDoc,
+<h1 class="page-title">
+    Tech Treasure Hunt
+</h1>
 
-            updateDoc
 
-        }
-        from
-        "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+<p class="page-subtitle">
+    Think fast. Choose wisely. Find the next clue.
+</p>
 
 
-        /* =========================
-           FIREBASE CONFIG
-        ========================== */
+<!-- =========================================
+     CHALLENGE
+========================================= -->
 
-        const firebaseConfig = {
+<div class="challenge-label">
 
-            apiKey:
-                "AIzaSyBAOyDtt9aODoo-5jTNGVOJGIcTuS2pVEk",
+    CHALLENGE
+    <span id="challengeNumber">
+        1
+    </span>
 
-            authDomain:
-                "treasure-edc7a.firebaseapp.com",
+</div>
 
-            projectId:
-                "treasure-edc7a",
 
-            storageBucket:
-                "treasure-edc7a.firebasestorage.app",
+<div class="question-container">
 
-            messagingSenderId:
-                "370342872714",
+    <div id="questionText">
+        Loading challenge...
+    </div>
 
-            appId:
-                "1:370342872714:web:3fce530217b3a3e1f14f73",
+</div>
 
-            measurementId:
-                "G-C6EFHJDQJN"
-        };
 
+<!-- =========================================
+     OPTIONS
+========================================= -->
 
-        const app =
-            initializeApp(firebaseConfig);
+<div
+    class="options-container"
+    id="optionsContainer"
+>
+</div>
 
 
-        const db =
-            getFirestore(app);
+<!-- =========================================
+     SUBMIT
+========================================= -->
 
+<button
+    id="submitAnswer"
+    disabled
+>
+    ✅ Submit Answer
+</button>
 
-        /* =========================
-           QUESTIONS
-        ========================== */
 
-        const questions = [
+<!-- =========================================
+     PROGRESS
+========================================= -->
 
-            {
-                id: "q1",
+<div class="progress-section">
 
-                question:
-                    "Which language is primarily used to structure the content of a web page?",
+    <span id="progressText">
+        Level 1 of 5
+    </span>
 
-                options: [
-                    "Python",
-                    "HTML",
-                    "C++",
-                    "SQL"
-                ],
+    <div class="progress-bar">
 
-                answer: 1,
+        <div
+            class="progress-fill"
+            id="progressFill"
+        ></div>
 
-                nextLocation: "canteen",
+    </div>
 
-                hint:
-                    "Your next clue is where students gather to recharge and refresh."
-            },
+</div>
 
 
-            {
-                id: "q2",
+</div>
 
-                question:
-                    "Which technology allows physical devices to communicate and exchange data over a network?",
+</div>
 
-                options: [
-                    "IoT",
-                    "HTML",
-                    "CSS",
-                    "Compiler"
-                ],
 
-                answer: 0,
+<!-- =========================================
+     RESULT POPUP
+========================================= -->
 
-                nextLocation: "computer_lab",
+<div
+    class="popup-overlay"
+    id="popupOverlay"
+>
 
-                hint:
-                    "Look for the place where computers, code and technology come together."
-            },
+<div class="popup-card">
 
+    <div
+        class="popup-icon"
+        id="popupIcon"
+    >
+        🎯
+    </div>
 
-            {
-                id: "q3",
 
-                question:
-                    "Which field of Artificial Intelligence enables computers to learn patterns from data?",
+    <h2 id="popupTitle">
+        Correct!
+    </h2>
 
-                options: [
-                    "Networking",
-                    "Machine Learning",
-                    "HTML",
-                    "Operating System"
-                ],
 
-                answer: 1,
+    <p id="popupMessage">
+        Great job!
+    </p>
 
-                nextLocation: "library",
 
-                hint:
-                    "Your next destination is filled with books, knowledge and learning."
-            },
+    <button
+        class="popup-button"
+        id="popupButton"
+    >
+        Continue
+    </button>
 
+</div>
 
-            {
-                id: "q4",
+</div>
 
-                question:
-                    "What is the main advantage of Edge Computing?",
 
-                options: [
-                    "It removes all computers from a network.",
-                    "It processes data closer to where it is generated.",
-                    "It only works without electricity.",
-                    "It replaces every database."
-                ],
+<!-- =========================================
+     FIREBASE
+========================================= -->
 
-                answer: 1,
+<script type="module">
 
-                nextLocation: "auditorium",
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
-                hint:
-                    "Find the place where large gatherings, presentations and events happen."
-            },
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    updateDoc
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
-            {
-                id: "q5",
+/* =========================================
+   FIREBASE CONFIG
+========================================= */
 
-                question:
-                    "Which component is commonly called the brain of a computer?",
+const firebaseConfig = {
 
-                options: [
-                    "RAM",
-                    "Hard Disk",
-                    "CPU",
-                    "Keyboard"
-                ],
+    apiKey: "AIzaSyBAOyDtt9aODoo-5jTNGVOJGIcTuS2pVEk",
 
-                answer: 2,
+    authDomain: "treasure-edc7a.firebaseapp.com",
 
-                nextLocation: "department",
+    projectId: "treasure-edc7a",
 
-                hint:
-                    "Your next clue is waiting near your academic department."
-            },
+    storageBucket: "treasure-edc7a.firebasestorage.app",
 
+    messagingSenderId: "370342872714",
 
-            {
-                id: "q6",
+    appId: "1:370342872714:web:3fce530217b3a3e1f14f73",
 
-                question:
-                    "Which language is used to style the appearance of HTML web pages?",
+    measurementId: "G-C6EFHJDQJN"
+};
 
-                options: [
-                    "CSS",
-                    "Python",
-                    "SQL",
-                    "C"
-                ],
 
-                answer: 0,
+const app = initializeApp(firebaseConfig);
 
-                nextLocation: "seminar_hall",
+const db = getFirestore(app);
 
-                hint:
-                    "Your next destination is a place used for seminars and technical sessions."
-            }
 
-        ];
+/* =========================================
+   ELEMENTS
+========================================= */
 
+const teamName =
+    document.getElementById("teamName");
 
-        /* =========================
-           ELEMENTS
-        ========================== */
+const levelNumber =
+    document.getElementById("levelNumber");
 
-        const teamNameElement =
-            document.getElementById("teamName");
+const challengeNumber =
+    document.getElementById("challengeNumber");
 
-        const levelElement =
-            document.getElementById("levelNumber");
+const questionText =
+    document.getElementById("questionText");
 
-        const questionNumberElement =
-            document.getElementById("questionNumber");
+const optionsContainer =
+    document.getElementById("optionsContainer");
 
-        const questionTextElement =
-            document.getElementById("questionText");
+const submitAnswer =
+    document.getElementById("submitAnswer");
 
-        const optionsContainer =
-            document.getElementById("optionsContainer");
+const progressText =
+    document.getElementById("progressText");
 
-        const submitBtn =
-            document.getElementById("submitBtn");
+const progressFill =
+    document.getElementById("progressFill");
 
+const popupOverlay =
+    document.getElementById("popupOverlay");
 
-        const popup =
-            document.getElementById("popup");
+const popupIcon =
+    document.getElementById("popupIcon");
 
-        const popupIcon =
-            document.getElementById("popupIcon");
+const popupTitle =
+    document.getElementById("popupTitle");
 
-        const popupTitle =
-            document.getElementById("popupTitle");
+const popupMessage =
+    document.getElementById("popupMessage");
 
-        const popupMessage =
-            document.getElementById("popupMessage");
+const popupButton =
+    document.getElementById("popupButton");
 
-        const hintBox =
-            document.getElementById("hintBox");
 
-        const popupButton =
-            document.getElementById("popupButton");
+/* =========================================
+   TEAM
+========================================= */
 
+const teamId =
+    localStorage.getItem("teamId");
 
-        /* =========================
-           TEAM DATA
-        ========================== */
 
-        const teamId =
-            localStorage.getItem("teamId");
+if (!teamId) {
 
+    window.location.href =
+        "index.html";
 
-        if (!teamId) {
+}
 
-            window.location.href =
-                "index.html";
 
-        }
+/* =========================================
+   QUESTION BANK
+========================================= */
 
+const QUESTIONS = {
 
-        let teamData = null;
+1: [
 
-        let currentQuestion = null;
+{
+q:"Which symbol is commonly used for comments in Python?",
+options:["#","//","<!-- -->","/* */"],
+answer:0
+},
 
-        let selectedAnswer = null;
+{
+q:"What does HTML stand for?",
+options:[
+"HyperText Markup Language",
+"HighText Machine Language",
+"Hyperlink Text Management Language",
+"Home Tool Markup Language"
+],
+answer:0
+},
 
+{
+q:"Which device is mainly used to connect networks?",
+options:[
+"Router",
+"Keyboard",
+"Monitor",
+"Printer"
+],
+answer:0
+},
 
-        /* =========================
-           LOAD TEAM
-        ========================== */
+{
+q:"Which one is an input device?",
+options:[
+"Keyboard",
+"Monitor",
+"Speaker",
+"Projector"
+],
+answer:0
+},
 
-        async function loadTeam() {
+{
+q:"What does CPU stand for?",
+options:[
+"Central Processing Unit",
+"Computer Processing Utility",
+"Central Program Unit",
+"Control Processing User"
+],
+answer:0
+},
 
-            try {
-
-                const teamRef =
-                    doc(db, "teams", teamId);
-
-                const snapshot =
-                    await getDoc(teamRef);
-
-
-                if (!snapshot.exists()) {
-
-                    alert(
-                        "Team not found. Please register again."
-                    );
-
-                    localStorage.clear();
-
-                    window.location.href =
-                        "index.html";
-
-                    return;
-                }
-
-
-                teamData =
-                    snapshot.data();
-
-
-                teamNameElement.textContent =
-                    teamData.name || "Team";
-
-
-                levelElement.textContent =
-                    teamData.level || 1;
-
-
-                /*
-                    If team already finished
-                */
-
-                if (teamData.finished === true) {
-
-                    window.location.href =
-                        "finish.html";
-
-                    return;
-                }
-
-
-                /*
-                    If there is already
-                    a question assigned,
-                    reuse it.
-                */
-
-                if (teamData.currentQuestionId) {
-
-                    const existingQuestion =
-                        questions.find(
-                            q =>
-                                q.id ===
-                                teamData.currentQuestionId
+{
+q:"Which language is used to style web pages?",
+options:[
+"CSS",
+"HTML",
+"Python",
+"SQL"
+],
+answer:0
+}
+
+],
+
+
+2: [
+
+{
+q:"What does URL stand for?",
+options:[
+"Uniform Resource Locator",
+"Universal Routing Link",
+"User Resource Language",
+"Uniform Reference Link"
+],
+answer:0
+},
+
+{
+q:"Which technology is commonly used for wireless internet?",
+options:[
+"Wi-Fi",
+"HDMI",
+"VGA",
+"USB"
+],
+answer:0
+},
+
+{
+q:"Which memory is volatile?",
+options:[
+"RAM",
+"ROM",
+"SSD",
+"Hard Disk"
+],
+answer:0
+},
+
+{
+q:"What is the full form of IoT?",
+options:[
+"Internet of Things",
+"Internet of Technology",
+"Input of Things",
+"Integration of Technology"
+],
+answer:0
+},
+
+{
+q:"Which protocol is commonly used for secure websites?",
+options:[
+"HTTPS",
+"FTP",
+"SMTP",
+"HTTPX"
+],
+answer:0
+},
+
+{
+q:"Which component performs calculations in a computer?",
+options:[
+"CPU",
+"Keyboard",
+"Monitor",
+"Mouse"
+],
+answer:0
+}
+
+],
+
+
+3: [
+
+{
+q:"What is AI?",
+options:[
+"Artificial Intelligence",
+"Automatic Internet",
+"Advanced Input",
+"Applied Information"
+],
+answer:0
+},
+
+{
+q:"Which technology stores data in rows and columns?",
+options:[
+"Database",
+"Compiler",
+"Router",
+"Browser"
+],
+answer:0
+},
+
+{
+q:"Which is an example of cloud storage?",
+options:[
+"Google Drive",
+"Keyboard",
+"CPU",
+"Monitor"
+],
+answer:0
+},
+
+{
+q:"What does API stand for?",
+options:[
+"Application Programming Interface",
+"Advanced Program Internet",
+"Application Process Input",
+"Applied Programming Internet"
+],
+answer:0
+},
+
+{
+q:"Which language is mainly used to query databases?",
+options:[
+"SQL",
+"CSS",
+"HTML",
+"XML"
+],
+answer:0
+},
+
+{
+q:"What does RAM temporarily store?",
+options:[
+"Data currently being used",
+"Permanent files only",
+"Printed documents",
+"Internet cables"
+],
+answer:0
+}
+
+],
+
+
+4: [
+
+{
+q:"What does HTTP stand for?",
+options:[
+"HyperText Transfer Protocol",
+"High Transfer Text Protocol",
+"Hyper Tool Transfer Program",
+"Home Text Transfer Protocol"
+],
+answer:0
+},
+
+{
+q:"Which technology is used to identify objects using radio waves?",
+options:[
+"RFID",
+"HTML",
+"CSS",
+"FTP"
+],
+answer:0
+},
+
+{
+q:"What is machine learning?",
+options:[
+"A method where systems learn from data",
+"A type of keyboard",
+"A network cable",
+"A storage device"
+],
+answer:0
+},
+
+{
+q:"Which one is an operating system?",
+options:[
+"Windows",
+"Chrome",
+"Google",
+"HTML"
+],
+answer:0
+},
+
+{
+q:"What does USB stand for?",
+options:[
+"Universal Serial Bus",
+"Universal System Backup",
+"User Storage Bus",
+"Unified Serial Board"
+],
+answer:0
+},
+
+{
+q:"Which device converts digital signals for network communication?",
+options:[
+"Modem",
+"Keyboard",
+"Monitor",
+"Scanner"
+],
+answer:0
+}
+
+],
+
+
+5: [
+
+{
+q:"Which technology is most closely associated with decentralized digital ledgers?",
+options:[
+"Blockchain",
+"Bluetooth",
+"HTML",
+"SMTP"
+],
+answer:0
+},
+
+{
+q:"Which component is often called the brain of a computer?",
+options:[
+"CPU",
+"RAM",
+"SSD",
+"Monitor"
+],
+answer:0
+},
+
+{
+q:"What is the primary purpose of encryption?",
+options:[
+"Protect information",
+"Increase screen brightness",
+"Print documents",
+"Cool the CPU"
+],
+answer:0
+}
+
+]
+
+};
+
+
+/* =========================================
+   LOCATION LIST
+========================================= */
+
+const LOCATIONS = [
+
+{
+slug:"block_a_main_gate",
+hint:"Look near the main entrance of Block A."
+},
+
+{
+slug:"block_a_computer_lab_1",
+hint:"Look for the place where computers, code and technology come together."
+},
+
+{
+slug:"block_a_computer_lab_2",
+hint:"Find another place filled with computers and digital technology."
+},
+
+{
+slug:"block_a_chemistry_lab",
+hint:"Look for the place where science experiments happen."
+},
+
+{
+slug:"block_a_park_1",
+hint:"Look for a peaceful green area."
+},
+
+{
+slug:"block_a_park_2",
+hint:"Find another green space on campus."
+},
+
+{
+slug:"block_a_basketball_court",
+hint:"Look where basketball players practice and compete."
+},
+
+{
+slug:"block_a_water_cooler",
+hint:"Find the place where everyone goes for a refreshing drink."
+},
+
+{
+slug:"block_a_staircase",
+hint:"Look for the path that connects different floors."
+},
+
+{
+slug:"block_b_ground_floor",
+hint:"Head towards the ground level of Block B."
+},
+
+{
+slug:"block_b_first_floor",
+hint:"Find the first floor of Block B."
+},
+
+{
+slug:"block_b_second_floor",
+hint:"Find the second floor of Block B."
+},
+
+{
+slug:"block_b_third_floor",
+hint:"Find the third floor of Block B."
+},
+
+{
+slug:"block_b_room_104",
+hint:"Solve this: 100 + 4 = ? Find that room."
+},
+
+{
+slug:"block_b_room_108",
+hint:"Solve this: 100 + 8 = ? Find that room."
+},
+
+{
+slug:"block_b_room_204",
+hint:"Solve this: 200 + 4 = ? Find that room."
+},
+
+{
+slug:"block_b_room_208",
+hint:"Solve this: 200 + 8 = ? Find that room."
+},
+
+{
+slug:"block_b_room_304",
+hint:"Solve this: 300 + 4 = ? Find that room."
+},
+
+{
+slug:"block_b_room_308",
+hint:"Solve this: 300 + 8 = ? Find that room."
+},
+
+{
+slug:"block_b_room_404",
+hint:"Solve this: 400 + 4 = ? Find that room."
+},
+
+{
+slug:"block_b_room_408",
+hint:"Solve this: 400 + 8 = ? Find that room."
+},
+
+{
+slug:"block_b_staircase",
+hint:"Find the staircase connecting Block B floors."
+},
+
+{
+slug:"block_b_water_cooler",
+hint:"Look for the water cooler in Block B."
+},
+
+{
+slug:"block_c_main_area",
+hint:"Head towards the main area of Block C."
+},
+
+{
+slug:"block_c_first_floor",
+hint:"Find the first floor of Block C."
+},
+
+{
+slug:"block_c_second_floor",
+hint:"Find the second floor of Block C."
+},
+
+{
+slug:"block_c_water_cooler",
+hint:"Find the water cooler in Block C."
+},
+
+{
+slug:"campus_flag_1",
+hint:"Look carefully near one of the campus flags."
+},
+
+{
+slug:"campus_flag_2",
+hint:"Find another flag somewhere around the campus."
+},
+
+{
+slug:"campus_flag_3",
+hint:"Search around the third campus flag."
+},
+
+{
+slug:"campus_canteen",
+hint:"Look where students go when they are hungry."
+},
+
+{
+slug:"campus_auditorium",
+hint:"Find the place where large events and programs are held."
+},
+
+{
+slug:"campus_seminar_hall",
+hint:"Look for the hall where seminars and presentations take place."
+}
+
+];
+
+
+/* =========================================
+   STATE
+========================================= */
+
+let teamData = null;
+
+let currentQuestion = null;
+
+let selectedAnswer = null;
+
+
+/* =========================================
+   RANDOM QUESTION
+========================================= */
+
+function getRandomQuestion(level) {
+
+    const bank =
+        QUESTIONS[level] || QUESTIONS[1];
+
+    return bank[
+        Math.floor(
+            Math.random() * bank.length
+        )
+    ];
+
+}
+
+
+/* =========================================
+   RANDOM LOCATION
+========================================= */
+
+function getRandomLocation() {
+
+    return LOCATIONS[
+        Math.floor(
+            Math.random() * LOCATIONS.length
+        )
+    ];
+
+}
+
+
+/* =========================================
+   SHOW QUESTION
+========================================= */
+
+function showQuestion() {
+
+    const level =
+        Number(teamData.level || 1);
+
+    currentQuestion =
+        getRandomQuestion(level);
+
+    selectedAnswer = null;
+
+    levelNumber.textContent =
+        level;
+
+    questionText.textContent =
+        currentQuestion.q;
+
+    optionsContainer.innerHTML = "";
+
+    const letters =
+        ["A","B","C","D"];
+
+
+    currentQuestion.options.forEach(
+        (option,index) => {
+
+            const button =
+                document.createElement("button");
+
+            button.className =
+                "answer-option";
+
+            button.innerHTML = `
+
+                <div class="answer-letter">
+                    ${letters[index]}
+                </div>
+
+                <div class="answer-text">
+                    ${option}
+                </div>
+
+            `;
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    document
+                        .querySelectorAll(
+                            ".answer-option"
+                        )
+                        .forEach(
+                            el =>
+                                el.classList.remove(
+                                    "selected"
+                                )
                         );
 
-
-                    if (existingQuestion) {
-
-                        currentQuestion =
-                            existingQuestion;
-
-                    } else {
-
-                        currentQuestion =
-                            getRandomQuestion();
-
-                    }
-
-                } else {
-
-                    currentQuestion =
-                        getRandomQuestion();
-
-
-                    await updateDoc(
-                        teamRef,
-                        {
-                            currentQuestionId:
-                                currentQuestion.id
-                        }
+                    button.classList.add(
+                        "selected"
                     );
 
-                }
+                    selectedAnswer =
+                        index;
 
-
-                showQuestion();
-
-            }
-
-            catch (error) {
-
-                console.error(
-                    "Team loading error:",
-                    error
-                );
-
-                questionTextElement.textContent =
-                    "Unable to load question. Check your Firebase connection.";
-
-            }
-
-        }
-
-
-        /* =========================
-           RANDOM QUESTION
-        ========================== */
-
-        function getRandomQuestion() {
-
-            let available =
-                [...questions];
-
-
-            /*
-                Try not to show
-                same question again
-            */
-
-            if (teamData &&
-                teamData.lastQuestionId) {
-
-                available =
-                    available.filter(
-                        q =>
-                            q.id !==
-                            teamData.lastQuestionId
-                    );
-
-            }
-
-
-            if (available.length === 0) {
-
-                available =
-                    [...questions];
-
-            }
-
-
-            const randomIndex =
-                Math.floor(
-                    Math.random() *
-                    available.length
-                );
-
-
-            return available[randomIndex];
-
-        }
-
-
-        /* =========================
-           SHOW QUESTION
-        ========================== */
-
-        function showQuestion() {
-
-            selectedAnswer = null;
-
-            submitBtn.disabled = true;
-
-
-            questionNumberElement.textContent =
-                "Q" +
-                (
-                    questions.indexOf(
-                        currentQuestion
-                    ) + 1
-                );
-
-
-            questionTextElement.textContent =
-                currentQuestion.question;
-
-
-            optionsContainer.innerHTML =
-                "";
-
-
-            const letters =
-                ["A", "B", "C", "D"];
-
-
-            currentQuestion.options.forEach(
-                (optionText, index) => {
-
-                    const option =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    option.className =
-                        "option";
-
-
-                    option.innerHTML = `
-
-                        <div class="option-letter">
-                            ${letters[index]}
-                        </div>
-
-                        <div class="option-text">
-                            ${optionText}
-                        </div>
-
-                        <div class="radio"></div>
-
-                    `;
-
-
-                    option.addEventListener(
-                        "click",
-                        () => {
-
-                            selectOption(
-                                index,
-                                option
-                            );
-
-                        }
-                    );
-
-
-                    optionsContainer.appendChild(
-                        option
-                    );
+                    submitAnswer.disabled =
+                        false;
 
                 }
             );
 
+
+            optionsContainer.appendChild(
+                button
+            );
+
         }
+    );
 
 
-        /* =========================
-           SELECT OPTION
-        ========================== */
+    challengeNumber.textContent =
+        Math.floor(
+            Math.random() * 99
+        ) + 1;
 
-        function selectOption(
-            index,
-            element
+
+    progressText.textContent =
+        `Level ${level} of 5`;
+
+    progressFill.style.width =
+        `${level * 20}%`;
+
+}
+
+
+/* =========================================
+   POPUP
+========================================= */
+
+function showPopup(
+    icon,
+    title,
+    message,
+    buttonText,
+    callback
+) {
+
+    popupIcon.textContent =
+        icon;
+
+    popupTitle.textContent =
+        title;
+
+    popupMessage.textContent =
+        message;
+
+    popupButton.textContent =
+        buttonText;
+
+    popupOverlay.classList.add(
+        "show"
+    );
+
+
+    popupButton.onclick = () => {
+
+        popupOverlay.classList.remove(
+            "show"
+        );
+
+        callback();
+
+    };
+
+}
+
+
+/* =========================================
+   WRONG ANSWER SOUND
+========================================= */
+
+function playWrongSound() {
+
+    try {
+
+        const audioContext =
+            new (
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
+
+        const oscillator =
+            audioContext.createOscillator();
+
+        const gain =
+            audioContext.createGain();
+
+
+        oscillator.type =
+            "sawtooth";
+
+        oscillator.frequency.value =
+            180;
+
+
+        gain.gain.setValueAtTime(
+            0.25,
+            audioContext.currentTime
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+            0.01,
+            audioContext.currentTime + 0.45
+        );
+
+
+        oscillator.connect(gain);
+
+        gain.connect(
+            audioContext.destination
+        );
+
+
+        oscillator.start();
+
+        oscillator.stop(
+            audioContext.currentTime + 0.45
+        );
+
+    }
+
+    catch(error) {
+
+        console.log(
+            "Sound unavailable"
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   CORRECT SOUND
+========================================= */
+
+function playCorrectSound() {
+
+    try {
+
+        const audioContext =
+            new (
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
+
+
+        const oscillator =
+            audioContext.createOscillator();
+
+        const gain =
+            audioContext.createGain();
+
+
+        oscillator.type =
+            "sine";
+
+        oscillator.frequency.setValueAtTime(
+            600,
+            audioContext.currentTime
+        );
+
+        oscillator.frequency.setValueAtTime(
+            900,
+            audioContext.currentTime + 0.12
+        );
+
+
+        gain.gain.setValueAtTime(
+            0.20,
+            audioContext.currentTime
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+            0.01,
+            audioContext.currentTime + 0.5
+        );
+
+
+        oscillator.connect(gain);
+
+        gain.connect(
+            audioContext.destination
+        );
+
+
+        oscillator.start();
+
+        oscillator.stop(
+            audioContext.currentTime + 0.5
+        );
+
+    }
+
+    catch(error) {
+
+        console.log(
+            "Sound unavailable"
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   SUBMIT ANSWER
+========================================= */
+
+submitAnswer.addEventListener(
+    "click",
+    async () => {
+
+        if (
+            selectedAnswer === null ||
+            !currentQuestion
         ) {
 
-            selectedAnswer =
-                index;
-
-
-            document
-                .querySelectorAll(".option")
-                .forEach(
-                    option =>
-                        option.classList.remove(
-                            "selected"
-                        )
-                );
-
-
-            element.classList.add(
-                "selected"
-            );
-
-
-            submitBtn.disabled =
-                false;
+            return;
 
         }
 
 
-        /* =========================
-           SUBMIT ANSWER
-        ========================== */
-
-        submitBtn.addEventListener(
-            "click",
-            async () => {
-
-                if (
-                    selectedAnswer === null ||
-                    !currentQuestion
-                ) {
-
-                    return;
-                }
+        submitAnswer.disabled =
+            true;
 
 
-                submitBtn.disabled =
-                    true;
+        /* =================================
+           WRONG
+        ================================= */
 
+        if (
+            selectedAnswer !==
+            currentQuestion.answer
+        ) {
+
+            playWrongSound();
+
+
+            try {
 
                 const teamRef =
                     doc(
@@ -1701,283 +1980,329 @@
                         teamId
                     );
 
-
-                try {
-
-                    /* =====================
-                       WRONG ANSWER
-                    ====================== */
-
-                    if (
-                        selectedAnswer !==
-                        currentQuestion.answer
-                    ) {
-
-                        const currentAttempts =
-                            teamData.attempts || 0;
-
-
-                        await updateDoc(
-                            teamRef,
-                            {
-
-                                attempts:
-                                    currentAttempts + 1,
-
-                                lastQuestionId:
-                                    currentQuestion.id
-
-                            }
-                        );
-
-
-                        teamData.attempts =
-                            currentAttempts + 1;
-
-
-                        showWrongPopup();
-
-                        return;
-
+                await updateDoc(
+                    teamRef,
+                    {
+                        attempts:
+                            (teamData.attempts || 0) + 1
                     }
-
-
-                    /* =====================
-                       CORRECT ANSWER
-                    ====================== */
-
-                    const oldScore =
-                        teamData.score || 0;
-
-
-                    const newScore =
-                        oldScore + 10;
-
-
-                    const oldLevel =
-                        teamData.level || 1;
-
-
-                    const newLevel =
-                        oldLevel + 1;
-
-
-                    await updateDoc(
-                        teamRef,
-                        {
-
-                            score:
-                                newScore,
-
-                            level:
-                                newLevel,
-
-                            currentQuestionId:
-                                null,
-
-                            expectedLocation:
-                                currentQuestion.nextLocation,
-
-                            lastHint:
-                                currentQuestion.hint,
-
-                            lastQuestionId:
-                                currentQuestion.id,
-
-                            locationVerified:
-                                false
-
-                        }
-                    );
-
-
-                    /* Local storage */
-
-                    localStorage.setItem(
-                        "score",
-                        String(newScore)
-                    );
-
-
-                    localStorage.setItem(
-                        "currentLevel",
-                        String(newLevel)
-                    );
-
-
-                    localStorage.setItem(
-                        "currentHint",
-                        currentQuestion.hint
-                    );
-
-
-                    localStorage.setItem(
-                        "nextLocation",
-                        currentQuestion.nextLocation
-                    );
-
-
-                    showCorrectPopup();
-
-                }
-
-                catch (error) {
-
-                    console.error(
-                        "Answer error:",
-                        error
-                    );
-
-                    alert(
-                        "Something went wrong. Please try again."
-                    );
-
-                    submitBtn.disabled =
-                        false;
-
-                }
+                );
 
             }
-        );
+
+            catch(error) {
+
+                console.error(error);
+
+            }
 
 
-        /* =========================
-           WRONG POPUP
-        ========================== */
+            showPopup(
 
-        function showWrongPopup() {
+                "❌",
 
-            popupIcon.textContent =
-                "❌";
+                "Wrong Answer!",
 
+                "That's not correct. Think again and try the next challenge.",
 
-            popupTitle.textContent =
-                "Wrong Answer";
+                "🔄 Try Again",
 
+                () => {
 
-            popupMessage.textContent =
-                "That's not correct. Don't worry — try another question!";
-
-
-            hintBox.style.display =
-                "none";
-
-
-            popupButton.textContent =
-                "TRY AGAIN →";
-
-
-            popupButton.onclick =
-                async () => {
-
-                    popup.classList.remove(
-                        "show"
-                    );
-
-
-                    /*
-                        Pick a new question
-                    */
-
-                    currentQuestion =
-                        getRandomQuestion();
-
-
-                    selectedAnswer =
-                        null;
-
-
-                    const teamRef =
-                        doc(
-                            db,
-                            "teams",
-                            teamId
-                        );
-
-
-                    await updateDoc(
-                        teamRef,
-                        {
-
-                            currentQuestionId:
-                                currentQuestion.id
-
-                        }
-                    );
-
+                    submitAnswer.disabled =
+                        true;
 
                     showQuestion();
 
-                };
+                }
 
-
-            popup.classList.add(
-                "show"
             );
+
+            return;
 
         }
 
 
-        /* =========================
-           CORRECT POPUP
-        ========================== */
+        /* =================================
+           CORRECT
+        ================================= */
 
-        function showCorrectPopup() {
-
-            popupIcon.textContent =
-                "🎉";
+        playCorrectSound();
 
 
-            popupTitle.textContent =
-                "Correct Answer!";
+        const level =
+            Number(teamData.level || 1);
 
 
-            popupMessage.textContent =
-                "+10 points added. Follow the clue to continue your hunt.";
+        const location =
+            getRandomLocation();
 
 
-            hintBox.textContent =
-                "📍 CLUE: " +
-                currentQuestion.hint;
+        const newScore =
+            Number(teamData.score || 0) + 10;
 
 
-            hintBox.style.display =
-                "block";
+        const teamRef =
+            doc(
+                db,
+                "teams",
+                teamId
+            );
 
 
-            popupButton.textContent =
-                "VIEW CLUE →";
+        /* =================================
+           LEVEL 1-4
+        ================================= */
+
+        if (level < 5) {
+
+            const nextLevel =
+                level + 1;
 
 
-            popupButton.onclick =
+            await updateDoc(
+                teamRef,
+                {
+
+                    score:
+                        newScore,
+
+                    level:
+                        nextLevel,
+
+                    expectedLocation:
+                        location.slug,
+
+                    lastHint:
+                        location.hint,
+
+                    lastLocation:
+                        location.slug,
+
+                    locationVerified:
+                        false
+
+                }
+            );
+
+
+            teamData.score =
+                newScore;
+
+            teamData.level =
+                nextLevel;
+
+
+            localStorage.setItem(
+                "nextLocation",
+                location.slug
+            );
+
+            localStorage.setItem(
+                "currentHint",
+                location.hint
+            );
+
+
+            showPopup(
+
+                "🎯",
+
+                "Correct Answer!",
+
+                `Great job! You earned 10 points.\n\nNext clue: ${location.hint}`,
+
+                "➡️ View Clue",
+
                 () => {
-
-                    popup.classList.remove(
-                        "show"
-                    );
-
 
                     window.location.href =
                         "result.html";
 
-                };
+                }
 
-
-            popup.classList.add(
-                "show"
             );
 
         }
 
 
-        /* =========================
-           START
-        ========================== */
+        /* =================================
+           FINAL LEVEL
+        ================================= */
 
-        loadTeam();
+        else {
 
-    </script>
+            await updateDoc(
+                teamRef,
+                {
+
+                    score:
+                        newScore,
+
+                    expectedLocation:
+                        location.slug,
+
+                    lastHint:
+                        location.hint,
+
+                    lastLocation:
+                        location.slug,
+
+                    locationVerified:
+                        false
+
+                }
+            );
+
+
+            teamData.score =
+                newScore;
+
+
+            localStorage.setItem(
+                "nextLocation",
+                location.slug
+            );
+
+            localStorage.setItem(
+                "currentHint",
+                location.hint
+            );
+
+
+            showPopup(
+
+                "🏆",
+
+                "Final Challenge Complete!",
+
+                `Amazing! You have completed all 5 levels.\n\nNow find the FINAL QR code at: ${location.hint}`,
+
+                "📍 Go To Final Clue",
+
+                () => {
+
+                    window.location.href =
+                        "result.html";
+
+                }
+
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   LOAD TEAM
+========================================= */
+
+async function loadTeam() {
+
+    try {
+
+        const teamRef =
+            doc(
+                db,
+                "teams",
+                teamId
+            );
+
+
+        const snapshot =
+            await getDoc(teamRef);
+
+
+        if (!snapshot.exists()) {
+
+            localStorage.clear();
+
+            window.location.href =
+                "index.html";
+
+            return;
+
+        }
+
+
+        teamData =
+            snapshot.data();
+
+
+        teamName.textContent =
+            teamData.name ||
+            "Team";
+
+
+        const level =
+            Number(
+                teamData.level || 1
+            );
+
+
+        levelNumber.textContent =
+            level;
+
+
+        /* ---------------------------------
+           FINISHED
+        --------------------------------- */
+
+        if (teamData.finished) {
+
+            window.location.href =
+                "final.html";
+
+            return;
+
+        }
+
+
+        /* ---------------------------------
+           QR VERIFICATION
+        --------------------------------- */
+
+        if (
+            level > 1 &&
+            teamData.locationVerified !== true
+        ) {
+
+            window.location.href =
+                "result.html";
+
+            return;
+
+        }
+
+
+        showQuestion();
+
+    }
+
+    catch(error) {
+
+        console.error(
+            "Team loading error:",
+            error
+        );
+
+        questionText.textContent =
+            "Unable to load challenge.";
+
+    }
+
+}
+
+
+/* =========================================
+   START
+========================================= */
+
+loadTeam();
+
+</script>
 
 </body>
-
 </html>
