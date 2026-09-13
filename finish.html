@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Congratulations | Tech Treasure Hunt</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .finish-icon {
+            font-size: 80px;
+            margin-bottom: 15px;
+        }
+
+        .finish-title {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .finish-subtitle {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .score-box {
+            margin: 30px 0;
+            padding: 25px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .score-label {
+            font-size: 14px;
+            opacity: 0.7;
+            margin-bottom: 8px;
+        }
+
+        .score {
+            font-size: 48px;
+            font-weight: bold;
+        }
+
+        .team-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .completed-box {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 12px;
+            background: rgba(0, 255, 150, 0.08);
+        }
+    </style>
+</head>
+
+
+<body>
+
+<div class="game-container">
+
+    <div class="game-card">
+
+        <div class="finish-icon">
+            🏆
+        </div>
+
+        <h1 class="finish-title">
+            Congratulations!
+        </h1>
+
+        <p class="finish-subtitle">
+            You have successfully completed the
+            <strong>Tech Treasure Hunt</strong>.
+        </p>
+
+
+        <div class="score-box">
+
+            <div class="score-label">
+                TEAM
+            </div>
+
+            <div
+                class="team-name"
+                id="teamName"
+            >
+                Loading...
+            </div>
+
+            <br>
+
+            <div class="score-label">
+                FINAL SCORE
+            </div>
+
+            <div
+                class="score"
+                id="finalScore"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="completed-box">
+
+            ✅ Hunt Completed Successfully
+
+            <br><br>
+
+            <span style="opacity:0.75;">
+                Your result has been saved.
+            </span>
+
+        </div>
+
+
+        <button
+            id="homeBtn"
+            style="margin-top:25px;"
+        >
+            🏠 Back to Home
+        </button>
+
+    </div>
+
+</div>
+
+
+<script type="module">
+
+/* =========================================
+   FIREBASE IMPORTS
+========================================= */
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    updateDoc
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+/* =========================================
+   FIREBASE CONFIG
+========================================= */
+
+const firebaseConfig = {
+
+    apiKey: "AIzaSyBAOyDtt9aODoo-5jTNGVOJGIcTuS2pVEk",
+
+    authDomain: "treasure-edc7a.firebaseapp.com",
+
+    projectId: "treasure-edc7a",
+
+    storageBucket: "treasure-edc7a.firebasestorage.app",
+
+    messagingSenderId: "370342872714",
+
+    appId: "1:370342872714:web:3fce530217b3a3e1f14f73",
+
+    measurementId: "G-C6EFHJDQJN"
+};
+
+
+/* =========================================
+   INITIALIZE FIREBASE
+========================================= */
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+
+/* =========================================
+   ELEMENTS
+========================================= */
+
+const teamNameElement =
+    document.getElementById("teamName");
+
+const finalScoreElement =
+    document.getElementById("finalScore");
+
+const homeBtn =
+    document.getElementById("homeBtn");
+
+
+/* =========================================
+   LOAD TEAM
+========================================= */
+
+async function loadTeam() {
+
+    try {
+
+        const teamId =
+            localStorage.getItem("teamId");
+
+
+        /* -----------------------------
+           NO TEAM
+        ----------------------------- */
+
+        if (!teamId) {
+
+            window.location.href =
+                "index.html";
+
+            return;
+        }
+
+
+        /* -----------------------------
+           GET TEAM
+        ----------------------------- */
+
+        const teamRef =
+            doc(
+                db,
+                "teams",
+                teamId
+            );
+
+        const teamSnapshot =
+            await getDoc(teamRef);
+
+
+        /* -----------------------------
+           TEAM NOT FOUND
+        ----------------------------- */
+
+        if (!teamSnapshot.exists()) {
+
+            localStorage.clear();
+
+            window.location.href =
+                "index.html";
+
+            return;
+        }
+
+
+        const team =
+            teamSnapshot.data();
+
+
+        /* -----------------------------
+           DISPLAY DATA
+        ----------------------------- */
+
+        teamNameElement.textContent =
+            team.name || "Unknown Team";
+
+        finalScoreElement.textContent =
+            team.score || 0;
+
+
+        /* -----------------------------
+           MARK FINISHED
+        ----------------------------- */
+
+        if (!team.finished) {
+
+            await updateDoc(
+                teamRef,
+                {
+                    finished: true,
+                    level: team.level || 1,
+                    completedAt: new Date()
+                }
+            );
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Finish page error:",
+            error
+        );
+
+        teamNameElement.textContent =
+            "Unable to load team";
+
+        finalScoreElement.textContent =
+            "--";
+
+    }
+
+}
+
+
+/* =========================================
+   HOME BUTTON
+========================================= */
+
+homeBtn.addEventListener(
+    "click",
+    function () {
+
+        /*
+         * Don't clear team data here.
+         * Admin needs the Firebase result.
+         */
+
+        window.location.href =
+            "index.html";
+
+    }
+);
+
+
+/* =========================================
+   START
+========================================= */
+
+loadTeam();
+
+</script>
+
+</body>
+</html>

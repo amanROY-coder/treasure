@@ -1,0 +1,26 @@
+Create collection: questions
+
+Add documents with these fields:
+question: "Which technology is commonly used to generate human-like text?"
+options: ["GPS","Large Language Models","NFC","Ethernet"]
+answerIndex: 1
+hint: "Your next clue is where students grab a quick bite."
+nextLocation: "canteen"
+
+More example:
+question: "Which technology is designed to process data close to where it is generated?"
+options: ["Edge Computing","HTML","Bluetooth","JPEG"]
+answerIndex: 0
+hint: "Look for the place where computers and practical sessions happen."
+nextLocation: "computer_lab"
+
+Another:
+question: "What does IoT stand for?"
+options: ["Internet of Things","Input of Technology","Internal Online Transfer","Internet of Text"]
+answerIndex: 0
+hint: "Your next QR is near the place where books and study materials live."
+nextLocation: "library"
+
+IMPORTANT:
+The app expects answerIndex to be 0, 1, 2 or 3.
+For the final question, set nextLocation to "finish".

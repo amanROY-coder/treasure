@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Scan Location | Tech Treasure Hunt</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="game-container">
+
+    <div class="game-card">
+
+        <div class="logo">🔍</div>
+
+        <h1 id="title">Checking QR...</h1>
+
+        <p id="message">Please wait while we verify this location.</p>
+
+        <div id="statusBox" style="
+            margin-top:25px;
+            padding:20px;
+            border-radius:15px;
+            background:rgba(255,255,255,0.06);
+            display:none;
+        ">
+
+            <div id="statusIcon" style="
+                font-size:50px;
+                margin-bottom:10px;
+            ">📍</div>
+
+            <h2 id="statusTitle"></h2>
+
+            <p id="statusMessage" style="
+                margin-top:10px;
+                line-height:1.6;
+                opacity:0.85;
+            "></p>
+
+        </div>
+
+        <button
+            id="retryBtn"
+            onclick="location.reload()"
+            style="display:none; margin-top:25px;"
+        >
+            🔄 Try Again
+        </button>
+
+        <button
+            id="continueBtn"
+            style="display:none; margin-top:15px;"
+        >
+            ➡️ Continue
+        </button>
+
+    </div>
+
+</div>
+
+
+<script type="module">
+
+/* =========================================
+   FIREBASE IMPORTS
+========================================= */
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    updateDoc
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+/* =========================================
+   FIREBASE CONFIG
+========================================= */
+
+const firebaseConfig = {
+
+    apiKey: "AIzaSyBAOyDtt9aODoo-5jTNGVOJGIcTuS2pVEk",
+
+    authDomain: "treasure-edc7a.firebaseapp.com",
+
+    projectId: "treasure-edc7a",
+
+    storageBucket: "treasure-edc7a.firebasestorage.app",
+
+    messagingSenderId: "370342872714",
+
+    appId: "1:370342872714:web:3fce530217b3a3e1f14f73",
+
+    measurementId: "G-C6EFHJDQJN"
+};
+
+
+/* =========================================
+   INITIALIZE FIREBASE
+========================================= */
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+
+/* =========================================
+   HTML ELEMENTS
+========================================= */
+
+const title = document.getElementById("title");
+
+const message = document.getElementById("message");
+
+const statusBox = document.getElementById("statusBox");
+
+const statusIcon = document.getElementById("statusIcon");
+
+const statusTitle = document.getElementById("statusTitle");
+
+const statusMessage = document.getElementById("statusMessage");
+
+const retryBtn = document.getElementById("retryBtn");
+
+const continueBtn = document.getElementById("continueBtn");
+
+
+/* =========================================
+   SHOW STATUS
+========================================= */
+
+function showStatus(icon, heading, text, type) {
+
+    statusBox.style.display = "block";
+
+    statusIcon.textContent = icon;
+
+    statusTitle.textContent = heading;
+
+    statusMessage.textContent = text;
+
+    if (type === "success") {
+
+        statusBox.style.border = "1px solid rgba(0,255,150,0.4)";
+
+    } else {
+
+        statusBox.style.border = "1px solid rgba(255,80,80,0.4)";
+
+    }
+}
+
+
+/* =========================================
+   MAIN QR CHECK
+========================================= */
+
+async function checkLocation() {
+
+    try {
+
+        /* -----------------------------
+           CHECK TEAM
+        ----------------------------- */
+
+        const teamId = localStorage.getItem("teamId");
+
+        if (!teamId) {
+
+            window.location.href = "index.html";
+
+            return;
+        }
+
+
+        /* -----------------------------
+           GET QR LOCATION
+        ----------------------------- */
+
+        const urlParams = new URLSearchParams(
+            window.location.search
+        );
+
+        const scannedLocation =
+            urlParams.get("location");
+
+
+        /* -----------------------------
+           CHECK QR PARAMETER
+        ----------------------------- */
+
+        if (!scannedLocation) {
+
+            title.textContent = "Invalid QR Code";
+
+            message.textContent =
+                "This QR code does not contain a valid location.";
+
+            showStatus(
+                "❌",
+                "Invalid QR",
+                "Please scan the correct Treasure Hunt QR code.",
+                "error"
+            );
+
+            retryBtn.style.display = "block";
+
+            return;
+        }
+
+
+        /* -----------------------------
+           GET TEAM FROM FIRESTORE
+        ----------------------------- */
+
+        const teamRef = doc(
+            db,
+            "teams",
+            teamId
+        );
+
+        const teamSnapshot =
+            await getDoc(teamRef);
+
+
+        /* -----------------------------
+           TEAM NOT FOUND
+        ----------------------------- */
+
+        if (!teamSnapshot.exists()) {
+
+            localStorage.clear();
+
+            window.location.href =
+                "index.html";
+
+            return;
+        }
+
+
+        const team = teamSnapshot.data();
+
+
+        /* -----------------------------
+           EXPECTED LOCATION
+        ----------------------------- */
+
+        const expectedLocation =
+            team.expectedLocation;
+
+
+        /* -----------------------------
+           NO ACTIVE LOCATION
+        ----------------------------- */
+
+        if (
+            !expectedLocation ||
+            expectedLocation === "none"
+        ) {
+
+            title.textContent =
+                "No Active Clue";
+
+            message.textContent =
+                "There is no location waiting for verification.";
+
+            showStatus(
+                "⚠️",
+                "No Active Clue",
+                "Answer the current question first to receive your next location.",
+                "error"
+            );
+
+            retryBtn.style.display =
+                "block";
+
+            return;
+        }
+
+
+        /* =========================================
+           COMPARE QR LOCATION
+        ========================================= */
+
+        if (
+            scannedLocation.toLowerCase() ===
+            expectedLocation.toLowerCase()
+        ) {
+
+            /* -----------------------------
+               CORRECT LOCATION
+            ----------------------------- */
+
+            await updateDoc(
+                teamRef,
+                {
+
+                    locationVerified: true,
+
+                    lastVerifiedLocation:
+                        scannedLocation,
+
+                    expectedLocation: "none",
+
+                    lastHint: ""
+
+                }
+            );
+
+
+            /* -----------------------------
+               SAVE LOCAL STATE
+            ----------------------------- */
+
+            localStorage.setItem(
+                "verifiedLocation",
+                scannedLocation
+            );
+
+            localStorage.removeItem(
+                "nextLocation"
+            );
+
+            localStorage.removeItem(
+                "currentHint"
+            );
+
+
+            /* -----------------------------
+               SHOW SUCCESS
+            ----------------------------- */
+
+            title.textContent =
+                "Location Verified!";
+
+            message.textContent =
+                "Great job! You found the correct location.";
+
+            showStatus(
+                "✅",
+                "Correct Location!",
+                "Your team can continue to the next challenge.",
+                "success"
+            );
+
+
+            continueBtn.style.display =
+                "block";
+
+
+            continueBtn.onclick = function () {
+
+                window.location.href =
+                    "question.html";
+
+            };
+
+        } else {
+
+            /* =========================================
+               WRONG LOCATION
+            ========================================= */
+
+            title.textContent =
+                "Wrong Location";
+
+            message.textContent =
+                "This is not the location given by your clue.";
+
+            showStatus(
+                "❌",
+                "Wrong Location!",
+                "Check your clue again and scan the QR at the correct location.",
+                "error"
+            );
+
+
+            retryBtn.style.display =
+                "block";
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "QR verification error:",
+            error
+        );
+
+        title.textContent =
+            "Something Went Wrong";
+
+        message.textContent =
+            "Unable to verify the QR code right now.";
+
+        showStatus(
+            "⚠️",
+            "Verification Error",
+            "Please check your internet connection and try again.",
+            "error"
+        );
+
+        retryBtn.style.display =
+            "block";
+    }
+
+}
+
+
+/* =========================================
+   START
+========================================= */
+
+checkLocation();
+
+</script>
+
+</body>
+</html>

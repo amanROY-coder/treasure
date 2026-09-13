@@ -1,0 +1,1014 @@
+/* =========================================
+   TECH TREASURE HUNT
+   COMPLETE STYLE SHEET
+   ========================================= */
+
+
+/* ---------- RESET ---------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ---------- BODY ---------- */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(65, 105, 225, 0.35),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(150, 70, 255, 0.30),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #080b18,
+            #10182f,
+            #080b17
+        );
+
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    overflow-x: hidden;
+}
+
+
+/* ---------- MAIN CONTAINER ---------- */
+
+.container {
+    width: 100%;
+    max-width: 700px;
+
+    margin: auto;
+}
+
+
+/* ---------- GAME CARD ---------- */
+
+.game-card {
+    width: 100%;
+
+    padding: 40px;
+
+    border-radius: 25px;
+
+    background: rgba(255, 255, 255, 0.07);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.45),
+        inset 0 1px 1px rgba(255, 255, 255, 0.08);
+}
+
+
+/* =========================================
+   INDEX PAGE
+   ========================================= */
+
+
+/* ---------- LOGO ---------- */
+
+.logo {
+    width: 80px;
+    height: 80px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 40px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    box-shadow:
+        0 0 35px rgba(100, 120, 255, 0.3);
+}
+
+
+/* ---------- HEADINGS ---------- */
+
+h1 {
+    font-size: 32px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+
+    text-align: center;
+
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #91b4ff,
+        #d58cff
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+h2 {
+    font-size: 24px;
+
+    margin-bottom: 12px;
+
+    text-align: center;
+}
+
+
+/* ---------- SUBTITLE ---------- */
+
+.subtitle {
+    text-align: center;
+
+    color: #aeb9d8;
+
+    font-size: 15px;
+
+    letter-spacing: 1px;
+}
+
+
+/* ---------- DIVIDER ---------- */
+
+.divider {
+    width: 80px;
+    height: 3px;
+
+    margin: 25px auto;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        90deg,
+        #4e82ff,
+        #a84dff
+    );
+}
+
+
+/* ---------- DESCRIPTION ---------- */
+
+.description {
+    max-width: 520px;
+
+    margin: 0 auto 30px;
+
+    text-align: center;
+
+    color: #b7c0d9;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* ---------- FORM ---------- */
+
+#teamForm {
+    text-align: left;
+}
+
+
+/* ---------- LABEL ---------- */
+
+label {
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: #dce4ff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+/* ---------- INPUT ---------- */
+
+input[type="text"] {
+    width: 100%;
+    height: 55px;
+
+    padding: 0 18px;
+
+    border-radius: 12px;
+
+    border: 1px solid rgba(255, 255, 255, 0.16);
+
+    outline: none;
+
+    background: rgba(0, 0, 0, 0.25);
+
+    color: white;
+
+    font-size: 16px;
+
+    transition: 0.25s ease;
+}
+
+
+input[type="text"]::placeholder {
+    color: #727d9e;
+}
+
+
+input[type="text"]:focus {
+    border-color: #6c8dff;
+
+    box-shadow:
+        0 0 0 3px rgba(108, 141, 255, 0.12),
+        0 0 25px rgba(108, 141, 255, 0.12);
+}
+
+
+/* ---------- ERROR ---------- */
+
+.error-message {
+    min-height: 20px;
+
+    margin-top: 8px;
+
+    color: #ff7373;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   ALL BUTTONS
+   ========================================= */
+
+button {
+    border: none;
+
+    cursor: pointer;
+
+    font-family: inherit;
+}
+
+
+/* ---------- PRIMARY BUTTON ---------- */
+
+#teamForm button,
+#submitButton,
+#tryAgainButton,
+#continueButton {
+    width: 100%;
+
+    height: 55px;
+
+    margin-top: 8px;
+
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        #4f7fff,
+        #894cff
+    );
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+
+    box-shadow:
+        0 10px 25px rgba(79, 127, 255, 0.25);
+
+    transition: 0.2s ease;
+}
+
+
+#teamForm button:hover,
+#submitButton:hover,
+#tryAgainButton:hover,
+#continueButton:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 15px 35px rgba(79, 127, 255, 0.4);
+}
+
+
+#teamForm button:active,
+#submitButton:active,
+#tryAgainButton:active,
+#continueButton:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   RULES - INDEX PAGE
+   ========================================= */
+
+.rules {
+    margin-top: 35px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+.rules h3 {
+    margin-bottom: 18px;
+
+    text-align: center;
+
+    font-size: 17px;
+}
+
+
+.rule {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    margin-bottom: 12px;
+
+    padding: 10px 12px;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.04);
+
+    transition: 0.2s ease;
+}
+
+
+.rule:hover {
+    background: rgba(255, 255, 255, 0.08);
+
+    transform: translateX(3px);
+}
+
+
+.rule span {
+    min-width: 32px;
+    height: 32px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 8px;
+
+    background: rgba(91, 124, 255, 0.18);
+
+    color: #9db3ff;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.rule p {
+    color: #b9c2dc;
+
+    font-size: 13px;
+}
+
+
+/* ---------- FOOTER ---------- */
+
+.footer {
+    margin-top: 28px;
+
+    text-align: center;
+
+    color: #697493;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   QUESTION PAGE
+   ========================================= */
+
+
+/* ---------- TOP BAR ---------- */
+
+.question-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+
+/* ---------- TEAM / LEVEL ---------- */
+
+.team-info,
+.level-info {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+
+.team-info strong,
+.level-info strong {
+    font-size: 15px;
+
+    color: #ffffff;
+}
+
+
+.small-label {
+    color: #7783a5;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* ---------- LEVEL BOX ---------- */
+
+.level-info {
+    min-width: 70px;
+
+    padding: 9px 13px;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+/* ---------- QUESTION ICON ---------- */
+
+.question-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.07);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    font-size: 30px;
+
+    box-shadow:
+        0 0 30px rgba(90, 120, 255, 0.2);
+}
+
+
+/* ---------- QUESTION LABEL ---------- */
+
+.question-label {
+    text-align: center;
+
+    color: #8294c7;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 8px;
+}
+
+
+/* ---------- QUESTION TITLE ---------- */
+
+.question-title {
+    font-size: 24px;
+
+    margin-bottom: 22px;
+}
+
+
+/* ---------- QUESTION BOX ---------- */
+
+.question-box {
+    padding: 25px;
+
+    margin-bottom: 20px;
+
+    border-radius: 15px;
+
+    background: rgba(0, 0, 0, 0.20);
+
+    border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+
+.question-box p {
+    color: #f1f4ff;
+
+    font-size: 17px;
+
+    line-height: 1.6;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   ANSWER OPTIONS
+   ========================================= */
+
+.options {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-bottom: 10px;
+}
+
+
+/* ---------- OPTION ---------- */
+
+.option {
+    width: 100%;
+
+    min-height: 58px;
+
+    padding: 8px 14px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    border-radius: 12px;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    background: rgba(255, 255, 255, 0.045);
+
+    color: white;
+
+    text-align: left;
+
+    transition: 0.2s ease;
+}
+
+
+/* ---------- OPTION HOVER ---------- */
+
+.option:hover {
+    background: rgba(255, 255, 255, 0.09);
+
+    border-color: rgba(120, 145, 255, 0.45);
+
+    transform: translateX(3px);
+}
+
+
+/* ---------- OPTION LETTER ---------- */
+
+.option-letter {
+    min-width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 9px;
+
+    background: rgba(100, 125, 255, 0.15);
+
+    color: #a8baff;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+/* ---------- OPTION TEXT ---------- */
+
+.option-text {
+    color: #dce3f8;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+}
+
+
+/* ---------- SELECTED OPTION ---------- */
+
+.option.selected {
+    background: rgba(83, 119, 255, 0.18);
+
+    border-color: #6989ff;
+
+    box-shadow:
+        0 0 20px rgba(83, 119, 255, 0.12);
+}
+
+
+.option.selected .option-letter {
+    background: #5b7dff;
+
+    color: white;
+}
+
+
+/* =========================================
+   POPUP
+   ========================================= */
+
+.popup-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background: rgba(2, 5, 15, 0.78);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: 0.25s ease;
+}
+
+
+/* ---------- SHOW POPUP ---------- */
+
+.popup-overlay.show {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+/* ---------- POPUP CARD ---------- */
+
+.popup-card {
+    width: 100%;
+
+    max-width: 430px;
+
+    padding: 35px 30px;
+
+    border-radius: 22px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(32, 39, 73, 0.98),
+            rgba(17, 22, 45, 0.98)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.13);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.55);
+
+    transform: scale(0.9);
+
+    transition: 0.25s ease;
+}
+
+
+.popup-overlay.show .popup-card {
+    transform: scale(1);
+}
+
+
+/* ---------- POPUP ICON ---------- */
+
+.popup-icon {
+    width: 70px;
+    height: 70px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.07);
+
+    font-size: 34px;
+}
+
+
+/* ---------- POPUP HEADING ---------- */
+
+.popup-card h2 {
+    font-size: 25px;
+
+    margin-bottom: 10px;
+}
+
+
+/* ---------- POPUP TEXT ---------- */
+
+.popup-card > p {
+    color: #aeb8d5;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================
+   HINT
+   ========================================= */
+
+.hint-box {
+    padding: 18px;
+
+    margin: 20px 0;
+
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    text-align: left;
+}
+
+
+.hint-box span {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #8da5ff;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
+}
+
+
+.hint-box p {
+    color: #eef2ff;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+
+/* ---------- TABLET ---------- */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .game-card {
+        padding: 32px 25px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .question-title {
+        font-size: 22px;
+    }
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 480px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .game-card {
+        padding: 25px 18px;
+
+        border-radius: 20px;
+    }
+
+    .logo {
+        width: 65px;
+        height: 65px;
+
+        font-size: 32px;
+    }
+
+    h1 {
+        font-size: 22px;
+
+        letter-spacing: 1px;
+    }
+
+    h2 {
+        font-size: 21px;
+    }
+
+    .subtitle {
+        font-size: 13px;
+    }
+
+    .description {
+        font-size: 13px;
+    }
+
+    .question-icon {
+        width: 58px;
+        height: 58px;
+
+        font-size: 27px;
+    }
+
+    .question-title {
+        font-size: 20px;
+    }
+
+    .question-box {
+        padding: 20px 15px;
+    }
+
+    .question-box p {
+        font-size: 15px;
+    }
+
+    .option {
+        min-height: 55px;
+
+        padding: 7px 10px;
+
+        gap: 10px;
+    }
+
+    .option-letter {
+        min-width: 34px;
+        height: 34px;
+    }
+
+    .option-text {
+        font-size: 13px;
+    }
+
+    .popup-card {
+        padding: 30px 20px;
+    }
+
+    .popup-card h2 {
+        font-size: 22px;
+    }
+}
+
+
+/* ---------- VERY SMALL SCREEN ---------- */
+
+@media (max-width: 350px) {
+
+    .game-card {
+        padding: 22px 14px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .question-box p {
+        font-size: 14px;
+    }
+
+    .option-text {
+        font-size: 12px;
+    }
+}
+/* =========================================
+   COMPACT MAIN CARD
+========================================= */
+
+.game-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+}
+
+.game-card {
+    width: 100%;
+    max-width: 700px;
+    margin: auto;
+    padding: 35px;
+}
+
+.logo {
+    margin-bottom: 15px;
+}
+
+.game-card h1 {
+    font-size: 38px;
+}
+
+.game-card p {
+    font-size: 16px;
+}
+
+@media (max-width: 600px) {
+
+    .game-container {
+        padding: 15px;
+    }
+
+    .game-card {
+        padding: 25px 18px;
+    }
+
+    .game-card h1 {
+        font-size: 28px;
+    }
+}
