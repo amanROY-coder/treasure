@@ -4,88 +4,389 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Scan Location | Tech Treasure Hunt</title>
-
-    <link rel="stylesheet" href="style.css">
+    <title>Scan Verification | Tech Treasure Hunt</title>
 
     <style>
-        .location-code {
-            margin-top: 12px;
-            font-size: 13px;
-            opacity: 0.55;
-            word-break: break-all;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
 
-        .loading {
-            animation: pulse 1.2s infinite;
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, #1e3a8a, transparent 35%),
+                radial-gradient(circle at bottom right, #581c87, transparent 35%),
+                linear-gradient(135deg, #020617, #0f172a);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
 
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.45; }
-            100% { opacity: 1; }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: rgba(15, 23, 42, 0.92);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 25px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.45);
+        }
+
+        .logo {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+
+        .team-box {
+            background: rgba(255,255,255,0.06);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 25px;
+        }
+
+        .team-name {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .team-id {
+            color: #94a3b8;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .status {
+            padding: 25px 15px;
+            border-radius: 18px;
+            margin: 20px 0;
+        }
+
+        .checking {
+            background: rgba(59,130,246,0.12);
+            border: 1px solid rgba(59,130,246,0.3);
+        }
+
+        .success {
+            background: rgba(34,197,94,0.12);
+            border: 1px solid rgba(34,197,94,0.35);
+        }
+
+        .final-success {
+            background: rgba(250,204,21,0.12);
+            border: 1px solid rgba(250,204,21,0.45);
+        }
+
+        .error {
+            background: rgba(239,68,68,0.12);
+            border: 1px solid rgba(239,68,68,0.35);
+        }
+
+        .warning {
+            background: rgba(245,158,11,0.12);
+            border: 1px solid rgba(245,158,11,0.35);
+        }
+
+        .status-icon {
+            font-size: 55px;
+            margin-bottom: 12px;
+        }
+
+        .status-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .status-text {
+            color: #cbd5e1;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .location-name {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 10px;
+            font-weight: bold;
+            word-break: break-word;
         }
 
         button {
+            border: none;
+            border-radius: 12px;
+            padding: 14px 25px;
+            font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        .primary-btn {
+            background: #2563eb;
+            color: white;
+        }
+
+        .final-btn {
+            background: #eab308;
+            color: #111827;
+        }
+
+        .danger-btn {
+            background: #dc2626;
+            color: white;
+        }
+
+        .small-info {
+            margin-top: 20px;
+            color: #64748b;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .spinner {
+            width: 45px;
+            height: 45px;
+            border: 4px solid rgba(255,255,255,0.15);
+            border-top-color: #3b82f6;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 28px 18px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<div class="game-container">
+<div class="container">
 
-    <div class="game-card">
+    <div class="logo">📍</div>
 
-        <div class="logo">🔍</div>
+    <h1>Checkpoint Verification</h1>
 
-        <h1 id="title">Checking QR...</h1>
+    <div class="subtitle">
+        Tech Treasure Hunt
+    </div>
 
-        <p id="message" class="loading">
-            Please wait while we verify this location.
-        </p>
+    <div class="team-box">
+        <div class="team-name" id="teamName">
+            Loading Team...
+        </div>
 
-        <div id="statusBox" style="
-            margin-top:25px;
-            padding:20px;
-            border-radius:15px;
-            background:rgba(255,255,255,0.06);
-            display:none;
-        ">
+        <div class="team-id" id="teamIdDisplay">
+            Checking team...
+        </div>
+    </div>
 
-            <div id="statusIcon" style="
-                font-size:50px;
-                margin-bottom:10px;
-            ">📍</div>
 
-            <h2 id="statusTitle"></h2>
+    <!-- CHECKING -->
+    <div id="checkingBox" class="status checking">
 
-            <p id="statusMessage" style="
-                margin-top:10px;
-                line-height:1.6;
-                opacity:0.85;
-            "></p>
+        <div class="spinner"></div>
 
-            <div id="locationCode" class="location-code"></div>
+        <div class="status-title">
+            Verifying QR Code...
+        </div>
 
+        <div class="status-text">
+            Please wait while we verify this checkpoint.
+        </div>
+
+    </div>
+
+
+    <!-- SUCCESS -->
+    <div id="successBox" class="status success hidden">
+
+        <div class="status-icon">
+            ✅
+        </div>
+
+        <div class="status-title">
+            Checkpoint Verified!
+        </div>
+
+        <div class="status-text">
+            Correct location found.
+            <br>
+            Your next challenge is now unlocked.
+        </div>
+
+        <div class="location-name" id="successLocation">
+            Location
         </div>
 
         <button
-            id="retryBtn"
-            onclick="location.reload()"
-            style="display:none; margin-top:25px;"
-        >
-            🔄 Try Again
+            class="primary-btn"
+            onclick="goToQuestion()">
+            ➡️ CONTINUE TO NEXT LEVEL
         </button>
+
+    </div>
+
+
+    <!-- FINAL SUCCESS -->
+    <div id="finalSuccessBox" class="status final-success hidden">
+
+        <div class="status-icon">
+            🏆
+        </div>
+
+        <div class="status-title">
+            FINAL QR VERIFIED!
+        </div>
+
+        <div class="status-text">
+            You have reached the final destination.
+            <br><br>
+
+            <strong>
+                Room 409, B Block
+            </strong>
+
+            <br><br>
+
+            Your finish position will now be recorded.
+        </div>
+
+        <div class="location-name">
+            🏁 FINAL CHECKPOINT
+        </div>
 
         <button
-            id="continueBtn"
-            style="display:none; margin-top:15px;"
-        >
-            ➡️ Continue
+            class="final-btn"
+            onclick="goToFinish()">
+            🏆 COMPLETE TREASURE HUNT
         </button>
 
+    </div>
+
+
+    <!-- WRONG LOCATION -->
+    <div id="wrongBox" class="status error hidden">
+
+        <div class="status-icon">
+            ❌
+        </div>
+
+        <div class="status-title">
+            Wrong Location!
+        </div>
+
+        <div class="status-text">
+            This QR code is not your current checkpoint.
+            <br><br>
+            Go back and follow your clue to find the correct location.
+        </div>
+
+        <div class="location-name" id="wrongLocation">
+            Scanned Location
+        </div>
+
+        <button
+            class="danger-btn"
+            onclick="goToResult()">
+            🔙 BACK TO CLUE
+        </button>
+
+    </div>
+
+
+    <!-- NO ACTIVE CHECKPOINT -->
+    <div id="noCheckpointBox" class="status warning hidden">
+
+        <div class="status-icon">
+            ⚠️
+        </div>
+
+        <div class="status-title">
+            No Active Checkpoint
+        </div>
+
+        <div class="status-text">
+            Your team currently has no active QR checkpoint.
+        </div>
+
+        <button
+            class="primary-btn"
+            onclick="goToQuestion()">
+            CONTINUE
+        </button>
+
+    </div>
+
+
+    <!-- ERROR -->
+    <div id="errorBox" class="status error hidden">
+
+        <div class="status-icon">
+            ⚠️
+        </div>
+
+        <div class="status-title">
+            Verification Error
+        </div>
+
+        <div class="status-text" id="errorText">
+            Something went wrong.
+        </div>
+
+        <button
+            class="danger-btn"
+            onclick="location.reload()">
+            🔄 TRY AGAIN
+        </button>
+
+    </div>
+
+
+    <div class="small-info">
+        Do not scan another team's checkpoint.
+        <br>
+        Each team has its own expected location.
     </div>
 
 </div>
@@ -93,498 +394,371 @@
 
 <script type="module">
 
-/* =========================================
-   FIREBASE IMPORTS
-========================================= */
+    import { initializeApp } from
+        "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+    import {
+        getFirestore,
+        doc,
+        getDoc,
+        updateDoc
+    } from
+        "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-import {
-    getFirestore,
-    doc,
-    getDoc,
-    updateDoc
-}
-from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
+    // =========================================================
+    // FIREBASE CONFIG
+    // =========================================================
 
-/* =========================================
-   FIREBASE CONFIG
-========================================= */
+    const firebaseConfig = {
+        apiKey: "AIzaSyBAOyDtt9AODd-oo5jTNGVOJGIcTuS2pVEk",
+        authDomain: "treasure-edc7a.firebaseapp.com",
+        projectId: "treasure-edc7a",
+        storageBucket: "treasure-edc7a.firebasestorage.app",
+        messagingSenderId: "370342872714",
+        appId: "1:370342872714:web:3fce530217b3a3e1f14f73",
+        measurementId: "G-C6EFHJDQJN"
+    };
 
-const firebaseConfig = {
 
-    apiKey: "AIzaSyBAOyDtt9aODoo-5jTNGVOJGIcTuS2pVEk",
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-    authDomain: "treasure-edc7a.firebaseapp.com",
 
-    projectId: "treasure-edc7a",
+    // =========================================================
+    // FINAL LOCATION
+    // =========================================================
 
-    storageBucket: "treasure-edc7a.firebasestorage.app",
+    const FINAL_LOCATION = "block_b_room_409";
 
-    messagingSenderId: "370342872714",
 
-    appId: "1:370342872714:web:3fce530217b3a3e1f14f73",
+    // =========================================================
+    // VALID QR LOCATIONS
+    // =========================================================
 
-    measurementId: "G-C6EFHJDQJN"
-};
+    const VALID_LOCATIONS = [
 
+        "block_a_main_gate",
 
-/* =========================================
-   INITIALIZE FIREBASE
-========================================= */
+        "block_a_computer_lab_1",
+        "block_a_computer_lab_2",
+        "block_a_chemistry_lab",
 
-const app = initializeApp(firebaseConfig);
+        "block_a_park_1",
+        "block_a_park_2",
 
-const db = getFirestore(app);
+        "block_a_basketball_court",
 
+        "block_a_water_cooler",
 
-/* =========================================
-   HTML ELEMENTS
-========================================= */
+        "block_a_staircase",
 
-const title =
-    document.getElementById("title");
 
-const message =
-    document.getElementById("message");
+        "block_b_ground_floor",
 
-const statusBox =
-    document.getElementById("statusBox");
+        "block_b_first_floor",
+        "block_b_second_floor",
+        "block_b_third_floor",
 
-const statusIcon =
-    document.getElementById("statusIcon");
+        "block_b_room_104",
+        "block_b_room_108",
 
-const statusTitle =
-    document.getElementById("statusTitle");
+        "block_b_room_204",
+        "block_b_room_208",
 
-const statusMessage =
-    document.getElementById("statusMessage");
+        "block_b_room_304",
+        "block_b_room_308",
 
-const locationCode =
-    document.getElementById("locationCode");
+        "block_b_room_404",
+        "block_b_room_408",
 
-const retryBtn =
-    document.getElementById("retryBtn");
+        // FINAL DESTINATION
+        "block_b_room_409",
 
-const continueBtn =
-    document.getElementById("continueBtn");
+        "block_b_staircase",
+        "block_b_water_cooler",
 
 
-/* =========================================
-   ALL TREASURE HUNT LOCATIONS
-========================================= */
+        "block_c_main_area",
 
-const VALID_LOCATIONS = [
+        "block_c_first_floor",
+        "block_c_second_floor",
 
-    /* ---------- BLOCK A ---------- */
+        "block_c_water_cooler",
 
-    "block_a_main_gate",
 
-    "block_a_computer_lab_1",
+        "campus_flag_1",
+        "campus_flag_2",
+        "campus_flag_3",
 
-    "block_a_computer_lab_2",
+        "campus_canteen",
 
-    "block_a_chemistry_lab",
+        "innovation_lab",
 
-    "block_a_park_1",
+        "campus_seminar_hall"
+    ];
 
-    "block_a_park_2",
 
-    "block_a_basketball_court",
+    // =========================================================
+    // GET TEAM ID
+    // =========================================================
 
-    "block_a_water_cooler",
+    const teamId = localStorage.getItem("teamId");
 
-    "block_a_staircase",
 
-    "block_a_ground_floor_corridor",
+    if (!teamId) {
 
-    "block_a_first_floor_corridor",
-
-    "block_a_second_floor_corridor",
-
-
-    /* ---------- BLOCK B ---------- */
-
-    "block_b_ground_floor",
-
-    "block_b_first_floor",
-
-    "block_b_second_floor",
-
-    "block_b_third_floor",
-
-    "block_b_room_104",
-
-    "block_b_room_108",
-
-    "block_b_room_204",
-
-    "block_b_room_208",
-
-    "block_b_room_304",
-
-    "block_b_room_308",
-
-    "block_b_room_404",
-
-    "block_b_room_408",
-
-    "block_b_staircase",
-
-    "block_b_water_cooler",
-
-
-    /* ---------- BLOCK C ---------- */
-
-    "block_c_main_area",
-
-    "block_c_first_floor",
-
-    "block_c_second_floor",
-
-    "block_c_water_cooler",
-
-
-    /* ---------- CAMPUS ---------- */
-
-    "campus_flag_1",
-
-    "campus_flag_2",
-
-    "campus_flag_3",
-
-    "campus_canteen",
-
-    "campus_auditorium",
-
-    "campus_seminar_hall"
-
-];
-
-
-/* =========================================
-   NORMALIZE LOCATION
-========================================= */
-
-function normalizeLocation(value) {
-
-    if (!value) {
-        return "";
-    }
-
-    return value
-        .toString()
-        .trim()
-        .toLowerCase()
-        .replace(/[\s-]+/g, "_");
-
-}
-
-
-/* =========================================
-   SHOW STATUS
-========================================= */
-
-function showStatus(
-    icon,
-    heading,
-    text,
-    type,
-    code = ""
-) {
-
-    statusBox.style.display = "block";
-
-    statusIcon.textContent = icon;
-
-    statusTitle.textContent = heading;
-
-    statusMessage.textContent = text;
-
-    locationCode.textContent =
-        code ? "Location Code: " + code : "";
-
-
-    if (type === "success") {
-
-        statusBox.style.border =
-            "1px solid rgba(0,255,150,0.4)";
-
-    } else if (type === "warning") {
-
-        statusBox.style.border =
-            "1px solid rgba(255,200,0,0.4)";
+        window.location.href = "index.html";
 
     } else {
 
-        statusBox.style.border =
-            "1px solid rgba(255,80,80,0.4)";
+        document.getElementById("teamIdDisplay").textContent =
+            "Team ID: " + teamId;
+
+        verifyLocation();
+
     }
 
-}
+
+    // =========================================================
+    // NORMALIZE LOCATION
+    // =========================================================
+
+    function normalizeLocation(value) {
+
+        if (!value) return "";
+
+        return String(value)
+            .trim()
+            .toLowerCase()
+            .replace(/\s+/g, "_");
+
+    }
 
 
-/* =========================================
-   HIDE BUTTONS
-========================================= */
+    // =========================================================
+    // GET SCANNED LOCATION
+    // =========================================================
 
-function hideButtons() {
+    function getScannedLocation() {
 
-    retryBtn.style.display = "none";
+        const params = new URLSearchParams(
+            window.location.search
+        );
 
-    continueBtn.style.display = "none";
+        return normalizeLocation(
+            params.get("location")
+        );
 
-}
-
-
-/* =========================================
-   SHOW ERROR
-========================================= */
-
-function showError(
-    heading,
-    text,
-    icon = "❌"
-) {
-
-    title.textContent = heading;
-
-    message.textContent = text;
-
-    message.classList.remove("loading");
-
-    showStatus(
-        icon,
-        heading,
-        text,
-        "error"
-    );
-
-    retryBtn.style.display = "block";
-
-}
+    }
 
 
-/* =========================================
-   MAIN QR CHECK
-========================================= */
+    // =========================================================
+    // HIDE ALL BOXES
+    // =========================================================
 
-async function checkLocation() {
+    function hideAllBoxes() {
 
-    try {
+        document.getElementById("checkingBox")
+            .classList.add("hidden");
 
-        hideButtons();
+        document.getElementById("successBox")
+            .classList.add("hidden");
 
+        document.getElementById("finalSuccessBox")
+            .classList.add("hidden");
 
-        /* =====================================
-           CHECK TEAM ID
-        ===================================== */
+        document.getElementById("wrongBox")
+            .classList.add("hidden");
 
-        const teamId =
-            localStorage.getItem("teamId");
+        document.getElementById("noCheckpointBox")
+            .classList.add("hidden");
 
+        document.getElementById("errorBox")
+            .classList.add("hidden");
 
-        if (!teamId) {
-
-            title.textContent =
-                "Team Not Found";
-
-            message.textContent =
-                "Please join the Treasure Hunt first.";
-
-            showStatus(
-                "👥",
-                "No Team Session",
-                "You must register your team before scanning a location QR.",
-                "error"
-            );
-
-            setTimeout(() => {
-
-                window.location.href =
-                    "index.html";
-
-            }, 2000);
-
-            return;
-        }
+    }
 
 
-        /* =====================================
-           GET QR LOCATION
-        ===================================== */
+    // =========================================================
+    // VERIFY LOCATION
+    // =========================================================
 
-        const urlParams =
-            new URLSearchParams(
-                window.location.search
-            );
+    async function verifyLocation() {
 
+        try {
 
-        const rawLocation =
-            urlParams.get("location");
+            const scannedLocation =
+                getScannedLocation();
 
 
-        /* =====================================
-           CHECK QR PARAMETER
-        ===================================== */
+            // ---------------------------------------------
+            // Check QR parameter
+            // ---------------------------------------------
 
-        if (!rawLocation) {
+            if (!scannedLocation) {
 
-            showError(
-                "Invalid QR Code",
-                "This QR code does not contain a valid Treasure Hunt location."
-            );
+                hideAllBoxes();
 
-            return;
-        }
+                document.getElementById("errorBox")
+                    .classList.remove("hidden");
 
+                document.getElementById("errorText").textContent =
+                    "Invalid QR code. No location was provided.";
 
-        /* =====================================
-           NORMALIZE LOCATION
-        ===================================== */
-
-        const scannedLocation =
-            normalizeLocation(rawLocation);
+                return;
+            }
 
 
-        /* =====================================
-           CHECK WHETHER QR IS OUR QR
-        ===================================== */
+            // ---------------------------------------------
+            // Check whether QR exists in valid list
+            // ---------------------------------------------
 
-        const isValidLocation =
-            VALID_LOCATIONS.includes(
-                scannedLocation
-            );
+            if (!VALID_LOCATIONS.includes(scannedLocation)) {
 
+                hideAllBoxes();
 
-        if (!isValidLocation) {
+                document.getElementById("errorBox")
+                    .classList.remove("hidden");
 
-            showError(
-                "Unknown QR Code",
-                "This QR code is not registered for the Tech Treasure Hunt."
-            );
+                document.getElementById("errorText").textContent =
+                    "This QR code is not a registered Tech Treasure Hunt checkpoint.";
 
-            return;
-        }
+                return;
+            }
 
 
-        /* =====================================
-           GET TEAM FROM FIRESTORE
-        ===================================== */
+            // ---------------------------------------------
+            // Get team
+            // ---------------------------------------------
 
-        const teamRef =
-            doc(
-                db,
-                "teams",
-                teamId
-            );
+            const teamRef =
+                doc(db, "teams", teamId);
 
-
-        const teamSnapshot =
-            await getDoc(teamRef);
+            const teamSnap =
+                await getDoc(teamRef);
 
 
-        /* =====================================
-           TEAM NOT FOUND
-        ===================================== */
+            if (!teamSnap.exists()) {
 
-        if (!teamSnapshot.exists()) {
-
-            localStorage.removeItem("teamId");
-
-            showError(
-                "Team Session Expired",
-                "Your team session could not be found. Please register again.",
-                "⚠️"
-            );
-
-            setTimeout(() => {
+                localStorage.clear();
 
                 window.location.href =
                     "index.html";
 
-            }, 2500);
-
-            return;
-        }
+                return;
+            }
 
 
-        const team =
-            teamSnapshot.data();
+            const team =
+                teamSnap.data();
 
 
-        /* =====================================
-           GET EXPECTED LOCATION
-        ===================================== */
+            // ---------------------------------------------
+            // Show team name
+            // ---------------------------------------------
 
-        const expectedLocation =
-            normalizeLocation(
-                team.expectedLocation
-            );
+            document.getElementById("teamName").textContent =
+                team.name || team.teamName || "Team";
 
 
-        /* =====================================
-           NO ACTIVE LOCATION
-        ===================================== */
+            // ---------------------------------------------
+            // Already finished?
+            // ---------------------------------------------
 
-        if (
-            !expectedLocation ||
-            expectedLocation === "none"
-        ) {
+            if (team.finished === true) {
 
-            title.textContent =
-                "No Active Clue";
+                window.location.href =
+                    "finish.html";
 
-            message.textContent =
-                "There is currently no location waiting for verification.";
-
-            message.classList.remove("loading");
-
-            showStatus(
-                "⚠️",
-                "No Active Clue",
-                "Answer the current question first. A correct answer will give your team the next location.",
-                "warning"
-            );
-
-            retryBtn.style.display =
-                "block";
-
-            return;
-        }
+                return;
+            }
 
 
-        /* =====================================
-           COMPARE LOCATIONS
-        ===================================== */
-
-        if (
-            scannedLocation ===
-            expectedLocation
-        ) {
-
-
-            /* =================================
-               CORRECT LOCATION
-            ================================= */
+            // ---------------------------------------------
+            // Current level
+            // ---------------------------------------------
 
             const currentLevel =
                 Number(team.level || 1);
 
 
-            /* -----------------------------
-               DETERMINE FINAL LEVEL
-            ----------------------------- */
+            // ---------------------------------------------
+            // Expected location
+            // ---------------------------------------------
 
-            const isFinalLevel =
-                currentLevel >= 5;
+            const expectedLocation =
+                normalizeLocation(
+                    team.expectedLocation
+                );
 
 
-            /* =================================
-               UPDATE FIRESTORE
-            ================================= */
+            // ---------------------------------------------
+            // No active checkpoint
+            // ---------------------------------------------
+
+            if (
+                !expectedLocation ||
+                expectedLocation === "none"
+            ) {
+
+                hideAllBoxes();
+
+                document.getElementById("noCheckpointBox")
+                    .classList.remove("hidden");
+
+                return;
+            }
+
+
+            // =================================================
+            // IMPORTANT FINAL QR CHECK
+            // =================================================
+            //
+            // DO NOT use:
+            //
+            // currentLevel >= 5
+            //
+            // because after Level 4 answer the team becomes
+            // level 5 but still has to scan its normal
+            // Level 4 checkpoint.
+            //
+            // Final QR is ONLY when:
+            //
+            // level === 5
+            // scanned QR === block_b_room_409
+            // expected location === block_b_room_409
+            //
+            // =================================================
+
+            const isFinalQR =
+                currentLevel === 5 &&
+                scannedLocation === FINAL_LOCATION &&
+                expectedLocation === FINAL_LOCATION;
+
+
+            // ---------------------------------------------
+            // Check correct location
+            // ---------------------------------------------
+
+            if (scannedLocation !== expectedLocation) {
+
+                hideAllBoxes();
+
+                document.getElementById("wrongBox")
+                    .classList.remove("hidden");
+
+                document.getElementById("wrongLocation")
+                    .textContent =
+                    "Scanned: " + scannedLocation;
+
+                return;
+            }
+
+
+            // =================================================
+            // CORRECT QR
+            // =================================================
 
             await updateDoc(
                 teamRef,
@@ -595,11 +769,9 @@ async function checkLocation() {
                     lastVerifiedLocation:
                         scannedLocation,
 
-                    expectedLocation:
-                        "none",
+                    expectedLocation: "none",
 
-                    lastHint:
-                        "",
+                    lastHint: "",
 
                     lastScanTime:
                         new Date().toISOString()
@@ -608,9 +780,39 @@ async function checkLocation() {
             );
 
 
-            /* =================================
-               SAVE LOCAL STATE
-            ================================= */
+            // =================================================
+            // FINAL QR
+            // =================================================
+
+            if (isFinalQR) {
+
+                // Store locally too
+                localStorage.setItem(
+                    "verifiedLocation",
+                    FINAL_LOCATION
+                );
+
+                localStorage.removeItem(
+                    "nextLocation"
+                );
+
+                localStorage.removeItem(
+                    "currentHint"
+                );
+
+
+                hideAllBoxes();
+
+                document.getElementById("finalSuccessBox")
+                    .classList.remove("hidden");
+
+                return;
+            }
+
+
+            // =================================================
+            // NORMAL CHECKPOINT
+            // =================================================
 
             localStorage.setItem(
                 "verifiedLocation",
@@ -618,178 +820,86 @@ async function checkLocation() {
             );
 
 
-            localStorage.removeItem(
-                "nextLocation"
+            hideAllBoxes();
+
+            document.getElementById("successBox")
+                .classList.remove("hidden");
+
+
+            document.getElementById("successLocation")
+                .textContent =
+                formatLocation(scannedLocation);
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Location verification error:",
+                error
             );
 
+            hideAllBoxes();
 
-            localStorage.removeItem(
-                "currentHint"
-            );
+            document.getElementById("errorBox")
+                .classList.remove("hidden");
 
-
-            /* =================================
-               FINAL LEVEL
-            ================================= */
-
-            if (isFinalLevel) {
-
-                title.textContent =
-                    "🏆 Final Location Verified!";
-
-                message.textContent =
-                    "Amazing! Your team has completed the final challenge.";
-
-                message.classList.remove(
-                    "loading"
-                );
-
-
-                showStatus(
-                    "🏆",
-                    "FINAL QR VERIFIED!",
-                    "You have reached the finish. Proceed to the final result.",
-                    "success",
-                    scannedLocation
-                );
-
-
-                continueBtn.textContent =
-                    "🏆 Finish Hunt";
-
-
-                continueBtn.style.display =
-                    "block";
-
-
-                continueBtn.onclick =
-                    function () {
-
-                        window.location.href =
-                            "finish.html";
-
-                    };
-
-
-                return;
-            }
-
-
-            /* =================================
-               NORMAL LEVEL QR
-            ================================= */
-
-            title.textContent =
-                "Location Verified!";
-
-            message.textContent =
-                "Great job! You found the correct location.";
-
-            message.classList.remove(
-                "loading"
-            );
-
-
-            showStatus(
-                "✅",
-                "Correct Location!",
-                "Your team can continue to the next challenge.",
-                "success",
-                scannedLocation
-            );
-
-
-            continueBtn.textContent =
-                "➡️ Continue";
-
-
-            continueBtn.style.display =
-                "block";
-
-
-            continueBtn.onclick =
-                function () {
-
-                    window.location.href =
-                        "question.html";
-
-                };
-
-
-        } else {
-
-
-            /* =================================
-               WRONG LOCATION
-            ================================= */
-
-            title.textContent =
-                "Wrong Location ❌";
-
-            message.textContent =
-                "This QR code is not the location given by your clue.";
-
-            message.classList.remove(
-                "loading"
-            );
-
-
-            showStatus(
-                "❌",
-                "Wrong Location!",
-                "Do not worry. Check your clue carefully and find the correct location.",
-                "error",
-                scannedLocation
-            );
-
-
-            retryBtn.style.display =
-                "block";
+            document.getElementById("errorText").textContent =
+                "Unable to verify this checkpoint. Please try again.";
 
         }
 
     }
 
-    catch (error) {
 
-        console.error(
-            "QR verification error:",
-            error
-        );
+    // =========================================================
+    // FORMAT LOCATION FOR DISPLAY
+    // =========================================================
 
+    function formatLocation(location) {
 
-        title.textContent =
-            "Something Went Wrong";
+        if (location === FINAL_LOCATION) {
 
-        message.textContent =
-            "Unable to verify the QR code right now.";
+            return "🏆 Room 409, B Block";
 
-        message.classList.remove(
-            "loading"
-        );
+        }
 
 
-        showStatus(
-            "⚠️",
-            "Verification Error",
-            "Please check your internet connection and scan the QR again.",
-            "error"
-        );
-
-
-        retryBtn.style.display =
-            "block";
+        return location
+            .replaceAll("_", " ")
+            .replace(/\b\w/g, char =>
+                char.toUpperCase()
+            );
 
     }
 
-}
+
+    // =========================================================
+    // NAVIGATION
+    // =========================================================
+
+    window.goToQuestion = function () {
+
+        window.location.href =
+            "question.html";
+
+    };
 
 
-/* =========================================
-   START
-========================================= */
+    window.goToResult = function () {
 
-checkLocation();
+        window.location.href =
+            "result.html";
+
+    };
+
+
+    window.goToFinish = function () {
+
+        window.location.href =
+            "finish.html";
+
+    };
 
 </script>
 
