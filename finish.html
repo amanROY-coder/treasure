@@ -1,133 +1,593 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Congratulations | Tech Treasure Hunt</title>
-
-    <link rel="stylesheet" href="style.css">
+    <title>Finish | Tech Treasure Hunt</title>
 
     <style>
-        .finish-icon {
-            font-size: 80px;
-            margin-bottom: 15px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
 
-        .finish-title {
-            font-size: 36px;
+        body {
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at top left,
+                    #312e81,
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at bottom right,
+                    #7e22ce,
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #020617,
+                    #0f172a
+                );
+
+            color: white;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 20px;
+        }
+
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+
+            background: rgba(15, 23, 42, 0.94);
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            border-radius: 28px;
+
+            padding: 40px 25px;
+
+            text-align: center;
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,0.5);
+        }
+
+
+        .loading {
+            display: block;
+        }
+
+
+        .result {
+            display: none;
+        }
+
+
+        .error {
+            display: none;
+        }
+
+
+        .trophy {
+            font-size: 90px;
+
+            margin-bottom: 15px;
+
+            animation: float 2s ease-in-out infinite;
+        }
+
+
+        @keyframes float {
+
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+        }
+
+
+        h1 {
+            font-size: 34px;
+
             margin-bottom: 10px;
         }
 
-        .finish-subtitle {
-            opacity: 0.8;
+
+        .subtitle {
+            color: #94a3b8;
+
+            font-size: 16px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .team-card {
+            background: rgba(255,255,255,0.06);
+
+            border-radius: 18px;
+
+            padding: 18px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .team-label {
+            color: #94a3b8;
+
+            font-size: 13px;
+
+            margin-bottom: 6px;
+        }
+
+
+        .team-name {
+            font-size: 24px;
+
+            font-weight: bold;
+        }
+
+
+        .position-card {
+
+            padding: 30px 20px;
+
+            border-radius: 22px;
+
+            margin: 20px 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.10),
+                    rgba(255,255,255,0.04)
+                );
+
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+
+
+        .position-icon {
+            font-size: 80px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .position-number {
+
+            font-size: 65px;
+
+            font-weight: 900;
+
+            margin-bottom: 5px;
+        }
+
+
+        .position-text {
+
+            font-size: 20px;
+
+            color: #cbd5e1;
+
+            font-weight: bold;
+        }
+
+
+        .winner {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(250,204,21,0.18),
+                    rgba(245,158,11,0.08)
+                );
+
+            border: 1px solid
+                rgba(250,204,21,0.45);
+        }
+
+
+        .winner h2 {
+
+            color: #facc15;
+
+            font-size: 28px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .score-card {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 35px;
+
+            margin: 25px 0;
+        }
+
+
+        .score-item {
+
+            min-width: 120px;
+
+            background: rgba(255,255,255,0.05);
+
+            padding: 15px;
+
+            border-radius: 15px;
+        }
+
+
+        .score-value {
+
+            font-size: 26px;
+
+            font-weight: bold;
+        }
+
+
+        .score-label {
+
+            color: #94a3b8;
+
+            font-size: 12px;
+
+            margin-top: 4px;
+        }
+
+
+        .message {
+
+            color: #cbd5e1;
+
+            line-height: 1.7;
+
+            font-size: 15px;
+
+            margin: 20px 0;
+        }
+
+
+        .button {
+
+            display: block;
+
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 13px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            text-decoration: none;
+
+            margin-top: 15px;
+        }
+
+
+        .button:hover {
+
+            transform: translateY(-2px);
+
+        }
+
+
+        .footer {
+
+            margin-top: 25px;
+
+            color: #64748b;
+
+            font-size: 12px;
+
             line-height: 1.6;
         }
 
-        .score-box {
-            margin: 30px 0;
-            padding: 25px;
-            border-radius: 18px;
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+
+        .spinner {
+
+            width: 55px;
+
+            height: 55px;
+
+            border-radius: 50%;
+
+            border: 5px solid
+                rgba(255,255,255,0.15);
+
+            border-top-color: #3b82f6;
+
+            animation:
+                spin 0.8s linear infinite;
+
+            margin: 0 auto 25px;
         }
 
-        .score-label {
-            font-size: 14px;
-            opacity: 0.7;
-            margin-bottom: 8px;
+
+        @keyframes spin {
+
+            to {
+                transform: rotate(360deg);
+            }
+
         }
 
-        .score {
-            font-size: 48px;
-            font-weight: bold;
+
+        .error-icon {
+
+            font-size: 70px;
+
+            margin-bottom: 15px;
         }
 
-        .team-name {
-            font-size: 20px;
-            font-weight: bold;
-            margin-top: 10px;
+
+        .error-title {
+
+            font-size: 28px;
+
+            margin-bottom: 10px;
         }
 
-        .completed-box {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 12px;
-            background: rgba(0, 255, 150, 0.08);
+
+        .error-message {
+
+            color: #cbd5e1;
+
+            line-height: 1.6;
+
+            margin-bottom: 25px;
         }
+
+
+        @media(max-width:500px) {
+
+            .container {
+                padding: 30px 18px;
+            }
+
+            h1 {
+                font-size: 27px;
+            }
+
+            .position-number {
+                font-size: 55px;
+            }
+
+            .score-card {
+                gap: 12px;
+            }
+
+        }
+
     </style>
 </head>
 
 
 <body>
 
-<div class="game-container">
+<div class="container">
 
-    <div class="game-card">
 
-        <div class="finish-icon">
+    <!-- ================================================= -->
+    <!-- LOADING -->
+    <!-- ================================================= -->
+
+    <div id="loading" class="loading">
+
+        <div class="spinner"></div>
+
+        <h1>
+            Recording Your Finish...
+        </h1>
+
+        <p class="subtitle">
+            Please don't close this page.
+        </p>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- RESULT -->
+    <!-- ================================================= -->
+
+    <div id="result" class="result">
+
+        <div id="trophy" class="trophy">
             🏆
         </div>
 
-        <h1 class="finish-title">
-            Congratulations!
+
+        <h1 id="mainTitle">
+            Treasure Hunt Complete!
         </h1>
 
-        <p class="finish-subtitle">
-            You have successfully completed the
-            <strong>Tech Treasure Hunt</strong>.
+
+        <p class="subtitle">
+            Tech Treasure Hunt
         </p>
 
 
-        <div class="score-box">
+        <div class="team-card">
 
-            <div class="score-label">
+            <div class="team-label">
                 TEAM
             </div>
 
             <div
-                class="team-name"
                 id="teamName"
-            >
-                Loading...
+                class="team-name">
+                Team
             </div>
 
-            <br>
+        </div>
 
-            <div class="score-label">
-                FINAL SCORE
+
+        <!-- POSITION -->
+
+        <div
+            id="positionCard"
+            class="position-card">
+
+            <div
+                id="positionIcon"
+                class="position-icon">
+                🏁
             </div>
 
             <div
-                class="score"
-                id="finalScore"
-            >
-                0
+                id="positionNumber"
+                class="position-number">
+                #1
+            </div>
+
+            <div
+                id="positionText"
+                class="position-text">
+                Finish Position
             </div>
 
         </div>
 
 
-        <div class="completed-box">
+        <!-- WINNER MESSAGE -->
 
-            ✅ Hunt Completed Successfully
+        <div
+            id="winnerBox"
+            class="winner"
+            style="display:none; padding:25px; border-radius:18px;">
 
-            <br><br>
+            <h2>
+                🥇 YOU ARE THE WINNER!
+            </h2>
 
-            <span style="opacity:0.75;">
-                Your result has been saved.
-            </span>
+            <p class="message">
+                Congratulations! Your team was the
+                <strong>first team</strong> to successfully
+                complete the final checkpoint.
+            </p>
 
         </div>
 
 
-        <button
-            id="homeBtn"
-            style="margin-top:25px;"
-        >
-            🏠 Back to Home
-        </button>
+        <!-- SCORE -->
+
+        <div class="score-card">
+
+            <div class="score-item">
+
+                <div
+                    id="scoreValue"
+                    class="score-value">
+                    0
+                </div>
+
+                <div class="score-label">
+                    FINAL SCORE
+                </div>
+
+            </div>
+
+
+            <div class="score-item">
+
+                <div
+                    id="levelValue"
+                    class="score-value">
+                    5
+                </div>
+
+                <div class="score-label">
+                    LEVELS
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <p
+            id="finishMessage"
+            class="message">
+            Your finish has been successfully recorded.
+        </p>
+
+
+        <a
+            href="index.html"
+            class="button">
+            🏠 BACK TO HOME
+        </a>
+
+
+        <div class="footer">
+
+            Tech Treasure Hunt<br>
+            Official Event Result
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- ERROR -->
+    <!-- ================================================= -->
+
+    <div id="error" class="error">
+
+        <div class="error-icon">
+            ⚠️
+        </div>
+
+        <div class="error-title">
+            Unable to Complete
+        </div>
+
+        <div
+            id="errorMessage"
+            class="error-message">
+
+            Something went wrong.
+
+        </div>
+
+
+        <a
+            href="result.html"
+            class="button">
+            🔙 BACK TO GAME
+        </a>
 
     </div>
 
@@ -136,199 +596,758 @@
 
 <script type="module">
 
-/* =========================================
-   FIREBASE IMPORTS
-========================================= */
+    // =====================================================
+    // FIREBASE
+    // =====================================================
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-
-import {
-    getFirestore,
-    doc,
-    getDoc,
-    updateDoc
-}
-from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+    import {
+        initializeApp
+    } from
+        "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 
-/* =========================================
-   FIREBASE CONFIG
-========================================= */
-
-const firebaseConfig = {
-
-    apiKey: "AIzaSyBAOyDtt9aODoo-5jTNGVOJGIcTuS2pVEk",
-
-    authDomain: "treasure-edc7a.firebaseapp.com",
-
-    projectId: "treasure-edc7a",
-
-    storageBucket: "treasure-edc7a.firebasestorage.app",
-
-    messagingSenderId: "370342872714",
-
-    appId: "1:370342872714:web:3fce530217b3a3e1f14f73",
-
-    measurementId: "G-C6EFHJDQJN"
-};
+    import {
+        getFirestore,
+        doc,
+        getDoc,
+        runTransaction,
+        serverTimestamp
+    } from
+        "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-/* =========================================
-   INITIALIZE FIREBASE
-========================================= */
+    // =====================================================
+    // FIREBASE CONFIG
+    // =====================================================
 
-const app = initializeApp(firebaseConfig);
+    const firebaseConfig = {
 
-const db = getFirestore(app);
+        apiKey:
+            "AIzaSyBAOyDtt9AODd-oo5jTNGVOJGIcTuS2pVEk",
 
+        authDomain:
+            "treasure-edc7a.firebaseapp.com",
 
-/* =========================================
-   ELEMENTS
-========================================= */
+        projectId:
+            "treasure-edc7a",
 
-const teamNameElement =
-    document.getElementById("teamName");
+        storageBucket:
+            "treasure-edc7a.firebasestorage.app",
 
-const finalScoreElement =
-    document.getElementById("finalScore");
+        messagingSenderId:
+            "370342872714",
 
-const homeBtn =
-    document.getElementById("homeBtn");
+        appId:
+            "1:370342872714:web:3fce530217b3a3e1f14f73",
 
+        measurementId:
+            "G-C6EFHJDQJN"
 
-/* =========================================
-   LOAD TEAM
-========================================= */
-
-async function loadTeam() {
-
-    try {
-
-        const teamId =
-            localStorage.getItem("teamId");
+    };
 
 
-        /* -----------------------------
-           NO TEAM
-        ----------------------------- */
-
-        if (!teamId) {
-
-            window.location.href =
-                "index.html";
-
-            return;
-        }
+    const app =
+        initializeApp(firebaseConfig);
 
 
-        /* -----------------------------
-           GET TEAM
-        ----------------------------- */
-
-        const teamRef =
-            doc(
-                db,
-                "teams",
-                teamId
-            );
-
-        const teamSnapshot =
-            await getDoc(teamRef);
+    const db =
+        getFirestore(app);
 
 
-        /* -----------------------------
-           TEAM NOT FOUND
-        ----------------------------- */
+    // =====================================================
+    // GET TEAM ID
+    // =====================================================
 
-        if (!teamSnapshot.exists()) {
-
-            localStorage.clear();
-
-            window.location.href =
-                "index.html";
-
-            return;
-        }
+    const teamId =
+        localStorage.getItem("teamId");
 
 
-        const team =
-            teamSnapshot.data();
+    // =====================================================
+    // START
+    // =====================================================
 
+    if (!teamId) {
 
-        /* -----------------------------
-           DISPLAY DATA
-        ----------------------------- */
-
-        teamNameElement.textContent =
-            team.name || "Unknown Team";
-
-        finalScoreElement.textContent =
-            team.score || 0;
-
-
-        /* -----------------------------
-           MARK FINISHED
-        ----------------------------- */
-
-        if (!team.finished) {
-
-            await updateDoc(
-                teamRef,
-                {
-                    finished: true,
-                    level: team.level || 1,
-                    completedAt: new Date()
-                }
-            );
-
-        }
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "Finish page error:",
-            error
+        showError(
+            "No team was found. Please start the game again."
         );
 
-        teamNameElement.textContent =
-            "Unable to load team";
+    } else {
 
-        finalScoreElement.textContent =
-            "--";
+        finishGame();
 
     }
 
-}
+
+    // =====================================================
+    // FINISH GAME
+    // =====================================================
+
+    async function finishGame() {
+
+        try {
+
+            const teamRef =
+                doc(
+                    db,
+                    "teams",
+                    teamId
+                );
 
 
-/* =========================================
-   HOME BUTTON
-========================================= */
+            const finishStateRef =
+                doc(
+                    db,
+                    "game",
+                    "finishState"
+                );
 
-homeBtn.addEventListener(
-    "click",
-    function () {
 
-        /*
-         * Don't clear team data here.
-         * Admin needs the Firebase result.
-         */
+            // =================================================
+            // FIRST CHECK TEAM
+            // =================================================
 
-        window.location.href =
-            "index.html";
+            const teamSnapshot =
+                await getDoc(teamRef);
+
+
+            if (!teamSnapshot.exists()) {
+
+                showError(
+                    "Your team record could not be found."
+                );
+
+                return;
+            }
+
+
+            const team =
+                teamSnapshot.data();
+
+
+            // =================================================
+            // SHOW TEAM NAME
+            // =================================================
+
+            document.getElementById(
+                "teamName"
+            ).textContent =
+                team.name ||
+                team.teamName ||
+                "Team";
+
+
+            // =================================================
+            // CHECK FINAL LEVEL
+            // =================================================
+
+            const currentLevel =
+                Number(team.level || 1);
+
+
+            if (currentLevel !== 5) {
+
+                showError(
+                    "You have not completed all 5 levels yet."
+                );
+
+                return;
+            }
+
+
+            // =================================================
+            // CHECK FINAL QR
+            // =================================================
+
+            if (team.locationVerified !== true) {
+
+                showError(
+                    "The final QR code has not been verified yet. Please scan the final QR first."
+                );
+
+                return;
+            }
+
+
+            // =================================================
+            // TRANSACTION
+            // =================================================
+            //
+            // This is the important part.
+            //
+            // If multiple teams finish at almost exactly
+            // the same time, Firestore transaction retry
+            // prevents duplicate positions.
+            //
+            // =================================================
+
+            const result =
+                await runTransaction(
+                    db,
+                    async (transaction) => {
+
+                        // -------------------------------------
+                        // READ BOTH DOCUMENTS FIRST
+                        // -------------------------------------
+
+                        const currentTeamSnapshot =
+                            await transaction.get(
+                                teamRef
+                            );
+
+
+                        const finishStateSnapshot =
+                            await transaction.get(
+                                finishStateRef
+                            );
+
+
+                        if (
+                            !currentTeamSnapshot.exists()
+                        ) {
+
+                            throw new Error(
+                                "TEAM_NOT_FOUND"
+                            );
+
+                        }
+
+
+                        const currentTeam =
+                            currentTeamSnapshot.data();
+
+
+                        // -------------------------------------
+                        // IDEMPOTENCY
+                        // -------------------------------------
+                        //
+                        // If this team already got a position,
+                        // don't assign another one.
+                        //
+                        // -------------------------------------
+
+                        if (
+                            currentTeam.finished === true &&
+                            currentTeam.finishPosition
+                        ) {
+
+                            return {
+
+                                position:
+                                    Number(
+                                        currentTeam.finishPosition
+                                    ),
+
+                                isWinner:
+                                    currentTeam.isWinner === true,
+
+                                score:
+                                    Number(
+                                        currentTeam.score || 0
+                                    ),
+
+                                alreadyFinished:
+                                    true
+
+                            };
+
+                        }
+
+
+                        // -------------------------------------
+                        // CURRENT FINISH STATE
+                        // -------------------------------------
+
+                        let nextPosition = 1;
+
+
+                        if (
+                            finishStateSnapshot.exists()
+                        ) {
+
+                            const finishState =
+                                finishStateSnapshot.data();
+
+
+                            nextPosition =
+                                Number(
+                                    finishState.nextPosition || 1
+                                );
+
+                        }
+
+
+                        // -------------------------------------
+                        // SAFETY
+                        // -------------------------------------
+
+                        if (
+                            !Number.isInteger(
+                                nextPosition
+                            ) ||
+                            nextPosition < 1
+                        ) {
+
+                            nextPosition = 1;
+
+                        }
+
+
+                        // -------------------------------------
+                        // ASSIGN POSITION
+                        // -------------------------------------
+
+                        const position =
+                            nextPosition;
+
+
+                        const isWinner =
+                            position === 1;
+
+
+                        const score =
+                            Number(
+                                currentTeam.score || 0
+                            );
+
+
+                        // -------------------------------------
+                        // UPDATE TEAM
+                        // -------------------------------------
+
+                        transaction.update(
+
+                            teamRef,
+
+                            {
+
+                                finished: true,
+
+                                finishPosition:
+                                    position,
+
+                                isWinner:
+                                    isWinner,
+
+                                level: 5,
+
+                                completedAt:
+                                    serverTimestamp()
+
+                            }
+
+                        );
+
+
+                        // -------------------------------------
+                        // UPDATE FINISH STATE
+                        // -------------------------------------
+
+                        const finishStateData = {
+
+                            nextPosition:
+                                position + 1,
+
+                            lastTeamId:
+                                teamId,
+
+                            lastTeamName:
+                                currentTeam.name ||
+                                currentTeam.teamName ||
+                                "Team",
+
+                            lastPosition:
+                                position,
+
+                            lastScore:
+                                score,
+
+                            lastFinishedAt:
+                                serverTimestamp()
+
+                        };
+
+
+                        // -------------------------------------
+                        // SAVE WINNER
+                        // -------------------------------------
+
+                        if (isWinner) {
+
+                            finishStateData.winnerTeamId =
+                                teamId;
+
+                            finishStateData.winnerTeamName =
+                                currentTeam.name ||
+                                currentTeam.teamName ||
+                                "Team";
+
+                            finishStateData.winnerScore =
+                                score;
+
+                            finishStateData.winnerAt =
+                                serverTimestamp();
+
+                        }
+
+
+                        // -------------------------------------
+                        // CREATE / UPDATE STATE
+                        // -------------------------------------
+
+                        if (
+                            finishStateSnapshot.exists()
+                        ) {
+
+                            transaction.update(
+                                finishStateRef,
+                                finishStateData
+                            );
+
+                        } else {
+
+                            transaction.set(
+                                finishStateRef,
+                                finishStateData
+                            );
+
+                        }
+
+
+                        return {
+
+                            position:
+                                position,
+
+                            isWinner:
+                                isWinner,
+
+                            score:
+                                score,
+
+                            alreadyFinished:
+                                false
+
+                        };
+
+                    }
+                );
+
+
+            // =================================================
+            // SHOW RESULT
+            // =================================================
+
+            showResult(result);
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Finish error:",
+                error
+            );
+
+
+            if (
+                error.message ===
+                "TEAM_NOT_FOUND"
+            ) {
+
+                showError(
+                    "Your team record could not be found."
+                );
+
+            } else {
+
+                showError(
+                    "Your finish could not be recorded. Please try again."
+                );
+
+            }
+
+        }
 
     }
-);
 
 
-/* =========================================
-   START
-========================================= */
+    // =====================================================
+    // SHOW RESULT
+    // =====================================================
 
-loadTeam();
+    function showResult(data) {
+
+        document.getElementById(
+            "loading"
+        ).style.display = "none";
+
+
+        document.getElementById(
+            "result"
+        ).style.display = "block";
+
+
+        const position =
+            Number(data.position);
+
+
+        const score =
+            Number(data.score || 0);
+
+
+        document.getElementById(
+            "scoreValue"
+        ).textContent =
+            score;
+
+
+        document.getElementById(
+            "levelValue"
+        ).textContent =
+            "5";
+
+
+        // =================================================
+        // WINNER
+        // =================================================
+
+        if (position === 1) {
+
+            document.getElementById(
+                "trophy"
+            ).textContent =
+                "🏆";
+
+
+            document.getElementById(
+                "mainTitle"
+            ).textContent =
+                "CONGRATULATIONS!";
+
+
+            document.getElementById(
+                "positionCard"
+            ).classList.add(
+                "winner"
+            );
+
+
+            document.getElementById(
+                "positionIcon"
+            ).textContent =
+                "🥇";
+
+
+            document.getElementById(
+                "positionNumber"
+            ).textContent =
+                "#1";
+
+
+            document.getElementById(
+                "positionText"
+            ).textContent =
+                "1st Place — WINNER";
+
+
+            document.getElementById(
+                "winnerBox"
+            ).style.display =
+                "block";
+
+
+            document.getElementById(
+                "finishMessage"
+            ).textContent =
+                "You were the first team to complete the final QR checkpoint!";
+
+        }
+
+
+        // =================================================
+        // SECOND
+        // =================================================
+
+        else if (position === 2) {
+
+            document.getElementById(
+                "trophy"
+            ).textContent =
+                "🥈";
+
+
+            document.getElementById(
+                "positionIcon"
+            ).textContent =
+                "🥈";
+
+
+            document.getElementById(
+                "positionNumber"
+            ).textContent =
+                "#2";
+
+
+            document.getElementById(
+                "positionText"
+            ).textContent =
+                "2nd Place";
+
+
+            document.getElementById(
+                "finishMessage"
+            ).textContent =
+                "Great job! You finished in second place.";
+
+        }
+
+
+        // =================================================
+        // THIRD
+        // =================================================
+
+        else if (position === 3) {
+
+            document.getElementById(
+                "trophy"
+            ).textContent =
+                "🥉";
+
+
+            document.getElementById(
+                "positionIcon"
+            ).textContent =
+                "🥉";
+
+
+            document.getElementById(
+                "positionNumber"
+            ).textContent =
+                "#3";
+
+
+            document.getElementById(
+                "positionText"
+            ).textContent =
+                "3rd Place";
+
+
+            document.getElementById(
+                "finishMessage"
+            ).textContent =
+                "Well done! You finished in third place.";
+
+        }
+
+
+        // =================================================
+        // OTHER POSITIONS
+        // =================================================
+
+        else {
+
+            document.getElementById(
+                "trophy"
+            ).textContent =
+                "🏁";
+
+
+            document.getElementById(
+                "positionIcon"
+            ).textContent =
+                "🏁";
+
+
+            document.getElementById(
+                "positionNumber"
+            ).textContent =
+                "#" + position;
+
+
+            document.getElementById(
+                "positionText"
+            ).textContent =
+                getOrdinal(position) +
+                " Place";
+
+
+            document.getElementById(
+                "finishMessage"
+            ).textContent =
+                "Your finish has been successfully recorded.";
+
+        }
+
+    }
+
+
+    // =====================================================
+    // ORDINAL
+    // =====================================================
+
+    function getOrdinal(number) {
+
+        const mod100 =
+            number % 100;
+
+
+        if (
+            mod100 >= 11 &&
+            mod100 <= 13
+        ) {
+
+            return number + "th";
+
+        }
+
+
+        switch (number % 10) {
+
+            case 1:
+                return number + "st";
+
+            case 2:
+                return number + "nd";
+
+            case 3:
+                return number + "rd";
+
+            default:
+                return number + "th";
+
+        }
+
+    }
+
+
+    // =====================================================
+    // ERROR
+    // =====================================================
+
+    function showError(message) {
+
+        document.getElementById(
+            "loading"
+        ).style.display = "none";
+
+
+        document.getElementById(
+            "result"
+        ).style.display = "none";
+
+
+        document.getElementById(
+            "error"
+        ).style.display = "block";
+
+
+        document.getElementById(
+            "errorMessage"
+        ).textContent =
+            message;
+
+    }
 
 </script>
 
