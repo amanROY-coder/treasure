@@ -2,8 +2,11 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Challenge | Tech Treasure Hunt</title>
 
@@ -140,9 +143,11 @@ body {
 
     border-radius: 15px;
 
-    background: rgba(255,255,255,0.06);
+    background:
+        rgba(255,255,255,0.06);
 
-    border: 1px solid rgba(255,255,255,0.13);
+    border:
+        1px solid rgba(255,255,255,0.13);
 
     font-weight: 700;
 
@@ -218,7 +223,8 @@ body {
     background:
         rgba(255,255,255,0.06);
 
-    border: 1px solid rgba(255,255,255,0.15);
+    border:
+        1px solid rgba(255,255,255,0.15);
 
     font-size: 42px;
 
@@ -301,14 +307,14 @@ body {
             rgba(20,25,50,0.65)
         );
 
-    border: 1px solid rgba(255,255,255,0.10);
+    border:
+        1px solid rgba(255,255,255,0.10);
 
     box-shadow:
         inset 0 1px 1px rgba(255,255,255,0.04);
 
     margin-bottom: 25px;
 }
-
 
 #questionText {
 
@@ -359,7 +365,8 @@ body {
     background:
         rgba(255,255,255,0.045);
 
-    border: 1px solid rgba(255,255,255,0.12);
+    border:
+        1px solid rgba(255,255,255,0.12);
 
     color: white;
 
@@ -373,7 +380,6 @@ body {
         border 0.2s ease,
         box-shadow 0.2s ease;
 }
-
 
 .answer-option:hover {
 
@@ -395,10 +401,13 @@ body {
 .answer-letter {
 
     min-width: 45px;
+
     height: 45px;
 
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 
     border-radius: 12px;
@@ -412,7 +421,8 @@ body {
 
     font-weight: 800;
 
-    border: 1px solid rgba(120,140,255,0.12);
+    border:
+        1px solid rgba(120,140,255,0.12);
 }
 
 
@@ -445,7 +455,6 @@ body {
     box-shadow:
         0 0 25px rgba(75,110,255,0.18);
 }
-
 
 .answer-option.selected .answer-letter {
 
@@ -502,7 +511,6 @@ body {
     transition: 0.2s ease;
 }
 
-
 #submitAnswer:hover {
 
     transform: translateY(-3px);
@@ -511,12 +519,10 @@ body {
         0 18px 45px rgba(90,80,255,0.45);
 }
 
-
 #submitAnswer:active {
 
     transform: translateY(0);
 }
-
 
 #submitAnswer:disabled {
 
@@ -543,7 +549,6 @@ body {
     font-size: 12px;
 }
 
-
 .progress-bar {
 
     width: 100%;
@@ -560,7 +565,6 @@ body {
     overflow: hidden;
 }
 
-
 .progress-fill {
 
     height: 100%;
@@ -576,7 +580,8 @@ body {
             #9745ff
         );
 
-    transition: width 0.3s ease;
+    transition:
+        width 0.3s ease;
 }
 
 
@@ -612,14 +617,12 @@ body {
     transition: 0.25s ease;
 }
 
-
 .popup-overlay.show {
 
     opacity: 1;
 
     visibility: visible;
 }
-
 
 .popup-card {
 
@@ -640,7 +643,8 @@ body {
             rgba(17,22,46,0.98)
         );
 
-    border: 1px solid rgba(255,255,255,0.14);
+    border:
+        1px solid rgba(255,255,255,0.14);
 
     box-shadow:
         0 35px 100px rgba(0,0,0,0.6);
@@ -650,12 +654,10 @@ body {
     transition: 0.25s ease;
 }
 
-
 .popup-overlay.show .popup-card {
 
     transform: scale(1);
 }
-
 
 .popup-icon {
 
@@ -664,14 +666,12 @@ body {
     margin-bottom: 15px;
 }
 
-
 .popup-card h2 {
 
     font-size: 27px;
 
     margin-bottom: 10px;
 }
-
 
 .popup-card p {
 
@@ -682,6 +682,8 @@ body {
     font-size: 14px;
 
     margin-bottom: 22px;
+
+    white-space: pre-line;
 }
 
 
@@ -714,7 +716,6 @@ body {
 
     transition: 0.2s;
 }
-
 
 .popup-button:hover {
 
@@ -751,6 +752,7 @@ body {
     .question-logo {
 
         width: 70px;
+
         height: 70px;
 
         font-size: 34px;
@@ -771,6 +773,7 @@ body {
     .answer-letter {
 
         min-width: 38px;
+
         height: 38px;
     }
 
@@ -832,7 +835,7 @@ body {
 
 <body>
 
-<!-- BACKGROUND BUBBLES -->
+<!-- BACKGROUND -->
 
 <div class="bg-bubble bubble1"></div>
 <div class="bg-bubble bubble2"></div>
@@ -867,6 +870,7 @@ body {
     <div class="level-badge">
 
         LEVEL
+
         <span id="levelNumber">
             1
         </span>
@@ -902,6 +906,7 @@ body {
 <div class="challenge-label">
 
     CHALLENGE
+
     <span id="challengeNumber">
         1
     </span>
@@ -924,8 +929,7 @@ body {
 
 <div
     class="options-container"
-    id="optionsContainer"
->
+    id="optionsContainer">
 </div>
 
 
@@ -935,9 +939,10 @@ body {
 
 <button
     id="submitAnswer"
-    disabled
->
+    disabled>
+
     ✅ Submit Answer
+
 </button>
 
 
@@ -955,8 +960,8 @@ body {
 
         <div
             class="progress-fill"
-            id="progressFill"
-        ></div>
+            id="progressFill">
+        </div>
 
     </div>
 
@@ -969,44 +974,46 @@ body {
 
 
 <!-- =========================================
-     RESULT POPUP
+     POPUP
 ========================================= -->
 
 <div
     class="popup-overlay"
-    id="popupOverlay"
->
+    id="popupOverlay">
 
-<div class="popup-card">
+    <div class="popup-card">
 
-    <div
-        class="popup-icon"
-        id="popupIcon"
-    >
-        🎯
+        <div
+            class="popup-icon"
+            id="popupIcon">
+
+            🎯
+
+        </div>
+
+
+        <h2 id="popupTitle">
+            Correct!
+        </h2>
+
+
+        <p id="popupMessage">
+            Great job!
+        </p>
+
+
+        <button
+            class="popup-button"
+            id="popupButton">
+
+            Continue
+
+        </button>
+
     </div>
 
-
-    <h2 id="popupTitle">
-        Correct!
-    </h2>
-
-
-    <p id="popupMessage">
-        Great job!
-    </p>
-
-
-    <button
-        class="popup-button"
-        id="popupButton"
-    >
-        Continue
-    </button>
-
 </div>
 
-</div>
 
 
 <!-- =========================================
@@ -1015,8 +1022,13 @@ body {
 
 <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
 
 import {
     getFirestore,
@@ -1024,7 +1036,9 @@ import {
     getDoc,
     updateDoc
 }
-from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
 
 
 /* =========================================
@@ -1033,25 +1047,36 @@ from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 const firebaseConfig = {
 
-    apiKey: "AIzaSyBAOyDtt9aODoo-5jTNGVOJGIcTuS2pVEk",
+    apiKey:
+        "AIzaSyBAOyDtt9AODd-oo5jTNGVOJGIcTuS2pVEk",
 
-    authDomain: "treasure-edc7a.firebaseapp.com",
+    authDomain:
+        "treasure-edc7a.firebaseapp.com",
 
-    projectId: "treasure-edc7a",
+    projectId:
+        "treasure-edc7a",
 
-    storageBucket: "treasure-edc7a.firebasestorage.app",
+    storageBucket:
+        "treasure-edc7a.firebasestorage.app",
 
-    messagingSenderId: "370342872714",
+    messagingSenderId:
+        "370342872714",
 
-    appId: "1:370342872714:web:3fce530217b3a3e1f14f73",
+    appId:
+        "1:370342872714:web:3fce530217b3a3e1f14f73",
 
-    measurementId: "G-C6EFHJDQJN"
+    measurementId:
+        "G-C6EFHJDQJN"
 };
 
 
-const app = initializeApp(firebaseConfig);
+const app =
+    initializeApp(firebaseConfig);
 
-const db = getFirestore(app);
+
+const db =
+    getFirestore(app);
+
 
 
 /* =========================================
@@ -1098,6 +1123,7 @@ const popupButton =
     document.getElementById("popupButton");
 
 
+
 /* =========================================
    TEAM
 ========================================= */
@@ -1114,329 +1140,471 @@ if (!teamId) {
 }
 
 
+
 /* =========================================
    QUESTION BANK
 ========================================= */
 
 const QUESTIONS = {
 
+
 1: [
 
 {
-q:"Which symbol is commonly used for comments in Python?",
-options:["#","//","<!-- -->","/* */"],
-answer:0
+    q:
+        "Which symbol is commonly used for comments in Python?",
+
+    options:
+        [
+            "#",
+            "//",
+            "<!-- -->",
+            "/* */"
+        ],
+
+    answer: 0
 },
 
-{
-q:"What does HTML stand for?",
-options:[
-"HyperText Markup Language",
-"HighText Machine Language",
-"Hyperlink Text Management Language",
-"Home Tool Markup Language"
-],
-answer:0
-},
 
 {
-q:"Which device is mainly used to connect networks?",
-options:[
-"Router",
-"Keyboard",
-"Monitor",
-"Printer"
-],
-answer:0
+    q:
+        "What does HTML stand for?",
+
+    options:
+        [
+            "HyperText Markup Language",
+            "HighText Machine Language",
+            "Hyperlink Text Management Language",
+            "Home Tool Markup Language"
+        ],
+
+    answer: 0
 },
 
-{
-q:"Which one is an input device?",
-options:[
-"Keyboard",
-"Monitor",
-"Speaker",
-"Projector"
-],
-answer:0
-},
 
 {
-q:"What does CPU stand for?",
-options:[
-"Central Processing Unit",
-"Computer Processing Utility",
-"Central Program Unit",
-"Control Processing User"
-],
-answer:0
+    q:
+        "Which device is mainly used to connect networks?",
+
+    options:
+        [
+            "Router",
+            "Keyboard",
+            "Monitor",
+            "Printer"
+        ],
+
+    answer: 0
 },
 
+
 {
-q:"Which language is used to style web pages?",
-options:[
-"CSS",
-"HTML",
-"Python",
-"SQL"
-],
-answer:0
+    q:
+        "Which one is an input device?",
+
+    options:
+        [
+            "Keyboard",
+            "Monitor",
+            "Speaker",
+            "Projector"
+        ],
+
+    answer: 0
+},
+
+
+{
+    q:
+        "What does CPU stand for?",
+
+    options:
+        [
+            "Central Processing Unit",
+            "Computer Processing Utility",
+            "Central Program Unit",
+            "Control Processing User"
+        ],
+
+    answer: 0
+},
+
+
+{
+    q:
+        "Which language is used to style web pages?",
+
+    options:
+        [
+            "CSS",
+            "HTML",
+            "Python",
+            "SQL"
+        ],
+
+    answer: 0
 }
 
 ],
+
 
 
 2: [
 
 {
-q:"What does URL stand for?",
-options:[
-"Uniform Resource Locator",
-"Universal Routing Link",
-"User Resource Language",
-"Uniform Reference Link"
-],
-answer:0
+    q:
+        "What does URL stand for?",
+
+    options:
+        [
+            "Uniform Resource Locator",
+            "Universal Routing Link",
+            "User Resource Language",
+            "Uniform Reference Link"
+        ],
+
+    answer: 0
 },
 
-{
-q:"Which technology is commonly used for wireless internet?",
-options:[
-"Wi-Fi",
-"HDMI",
-"VGA",
-"USB"
-],
-answer:0
-},
 
 {
-q:"Which memory is volatile?",
-options:[
-"RAM",
-"ROM",
-"SSD",
-"Hard Disk"
-],
-answer:0
+    q:
+        "Which technology is commonly used for wireless internet?",
+
+    options:
+        [
+            "Wi-Fi",
+            "HDMI",
+            "VGA",
+            "USB"
+        ],
+
+    answer: 0
 },
 
-{
-q:"What is the full form of IoT?",
-options:[
-"Internet of Things",
-"Internet of Technology",
-"Input of Things",
-"Integration of Technology"
-],
-answer:0
-},
 
 {
-q:"Which protocol is commonly used for secure websites?",
-options:[
-"HTTPS",
-"FTP",
-"SMTP",
-"HTTPX"
-],
-answer:0
+    q:
+        "Which memory is volatile?",
+
+    options:
+        [
+            "RAM",
+            "ROM",
+            "SSD",
+            "Hard Disk"
+        ],
+
+    answer: 0
 },
 
+
 {
-q:"Which component performs calculations in a computer?",
-options:[
-"CPU",
-"Keyboard",
-"Monitor",
-"Mouse"
-],
-answer:0
+    q:
+        "What is the full form of IoT?",
+
+    options:
+        [
+            "Internet of Things",
+            "Internet of Technology",
+            "Input of Things",
+            "Integration of Technology"
+        ],
+
+    answer: 0
+},
+
+
+{
+    q:
+        "Which protocol is commonly used for secure websites?",
+
+    options:
+        [
+            "HTTPS",
+            "FTP",
+            "SMTP",
+            "HTTPX"
+        ],
+
+    answer: 0
+},
+
+
+{
+    q:
+        "Which component performs calculations in a computer?",
+
+    options:
+        [
+            "CPU",
+            "Keyboard",
+            "Monitor",
+            "Mouse"
+        ],
+
+    answer: 0
 }
 
 ],
+
 
 
 3: [
 
 {
-q:"What is AI?",
-options:[
-"Artificial Intelligence",
-"Automatic Internet",
-"Advanced Input",
-"Applied Information"
-],
-answer:0
+    q:
+        "What is AI?",
+
+    options:
+        [
+            "Artificial Intelligence",
+            "Automatic Internet",
+            "Advanced Input",
+            "Applied Information"
+        ],
+
+    answer: 0
 },
 
-{
-q:"Which technology stores data in rows and columns?",
-options:[
-"Database",
-"Compiler",
-"Router",
-"Browser"
-],
-answer:0
-},
 
 {
-q:"Which is an example of cloud storage?",
-options:[
-"Google Drive",
-"Keyboard",
-"CPU",
-"Monitor"
-],
-answer:0
+    q:
+        "Which technology stores data in rows and columns?",
+
+    options:
+        [
+            "Database",
+            "Compiler",
+            "Router",
+            "Browser"
+        ],
+
+    answer: 0
 },
 
-{
-q:"What does API stand for?",
-options:[
-"Application Programming Interface",
-"Advanced Program Internet",
-"Application Process Input",
-"Applied Programming Internet"
-],
-answer:0
-},
 
 {
-q:"Which language is mainly used to query databases?",
-options:[
-"SQL",
-"CSS",
-"HTML",
-"XML"
-],
-answer:0
+    q:
+        "Which is an example of cloud storage?",
+
+    options:
+        [
+            "Google Drive",
+            "Keyboard",
+            "CPU",
+            "Monitor"
+        ],
+
+    answer: 0
 },
 
+
 {
-q:"What does RAM temporarily store?",
-options:[
-"Data currently being used",
-"Permanent files only",
-"Printed documents",
-"Internet cables"
-],
-answer:0
+    q:
+        "What does API stand for?",
+
+    options:
+        [
+            "Application Programming Interface",
+            "Advanced Program Internet",
+            "Application Process Input",
+            "Applied Programming Internet"
+        ],
+
+    answer: 0
+},
+
+
+{
+    q:
+        "Which language is mainly used to query databases?",
+
+    options:
+        [
+            "SQL",
+            "CSS",
+            "HTML",
+            "XML"
+        ],
+
+    answer: 0
+},
+
+
+{
+    q:
+        "What does RAM temporarily store?",
+
+    options:
+        [
+            "Data currently being used",
+            "Permanent files only",
+            "Printed documents",
+            "Internet cables"
+        ],
+
+    answer: 0
 }
 
 ],
+
 
 
 4: [
 
 {
-q:"What does HTTP stand for?",
-options:[
-"HyperText Transfer Protocol",
-"High Transfer Text Protocol",
-"Hyper Tool Transfer Program",
-"Home Text Transfer Protocol"
-],
-answer:0
+    q:
+        "What does HTTP stand for?",
+
+    options:
+        [
+            "HyperText Transfer Protocol",
+            "High Transfer Text Protocol",
+            "Hyper Tool Transfer Program",
+            "Home Text Transfer Protocol"
+        ],
+
+    answer: 0
 },
 
-{
-q:"Which technology is used to identify objects using radio waves?",
-options:[
-"RFID",
-"HTML",
-"CSS",
-"FTP"
-],
-answer:0
-},
 
 {
-q:"What is machine learning?",
-options:[
-"A method where systems learn from data",
-"A type of keyboard",
-"A network cable",
-"A storage device"
-],
-answer:0
+    q:
+        "Which technology is used to identify objects using radio waves?",
+
+    options:
+        [
+            "RFID",
+            "HTML",
+            "CSS",
+            "FTP"
+        ],
+
+    answer: 0
 },
 
-{
-q:"Which one is an operating system?",
-options:[
-"Windows",
-"Chrome",
-"Google",
-"HTML"
-],
-answer:0
-},
 
 {
-q:"What does USB stand for?",
-options:[
-"Universal Serial Bus",
-"Universal System Backup",
-"User Storage Bus",
-"Unified Serial Board"
-],
-answer:0
+    q:
+        "What is machine learning?",
+
+    options:
+        [
+            "A method where systems learn from data",
+            "A type of keyboard",
+            "A network cable",
+            "A storage device"
+        ],
+
+    answer: 0
 },
 
+
 {
-q:"Which device converts digital signals for network communication?",
-options:[
-"Modem",
-"Keyboard",
-"Monitor",
-"Scanner"
-],
-answer:0
+    q:
+        "Which one is an operating system?",
+
+    options:
+        [
+            "Windows",
+            "Chrome",
+            "Google",
+            "HTML"
+        ],
+
+    answer: 0
+},
+
+
+{
+    q:
+        "What does USB stand for?",
+
+    options:
+        [
+            "Universal Serial Bus",
+            "Universal System Backup",
+            "User Storage Bus",
+            "Unified Serial Board"
+        ],
+
+    answer: 0
+},
+
+
+{
+    q:
+        "Which device converts digital signals for network communication?",
+
+    options:
+        [
+            "Modem",
+            "Keyboard",
+            "Monitor",
+            "Scanner"
+        ],
+
+    answer: 0
 }
 
 ],
+
 
 
 5: [
 
 {
-q:"Which technology is most closely associated with decentralized digital ledgers?",
-options:[
-"Blockchain",
-"Bluetooth",
-"HTML",
-"SMTP"
-],
-answer:0
+    q:
+        "Which technology is most closely associated with decentralized digital ledgers?",
+
+    options:
+        [
+            "Blockchain",
+            "Bluetooth",
+            "HTML",
+            "SMTP"
+        ],
+
+    answer: 0
 },
 
-{
-q:"Which component is often called the brain of a computer?",
-options:[
-"CPU",
-"RAM",
-"SSD",
-"Monitor"
-],
-answer:0
-},
 
 {
-q:"What is the primary purpose of encryption?",
-options:[
-"Protect information",
-"Increase screen brightness",
-"Print documents",
-"Cool the CPU"
-],
-answer:0
+    q:
+        "Which component is often called the brain of a computer?",
+
+    options:
+        [
+            "CPU",
+            "RAM",
+            "SSD",
+            "Monitor"
+        ],
+
+    answer: 0
+},
+
+
+{
+    q:
+        "What is the primary purpose of encryption?",
+
+    options:
+        [
+            "Protect information",
+            "Increase screen brightness",
+            "Print documents",
+            "Cool the CPU"
+        ],
+
+    answer: 0
 }
 
 ]
 
 };
+
 
 
 /* =========================================
@@ -1445,171 +1613,317 @@ answer:0
 
 const LOCATIONS = [
 
-{
-slug:"block_a_main_gate",
-hint:"Look near the main entrance of Block ."
-},
 
 {
-slug:"block_a_computer_lab_1",
-hint:"Look for the place where ,we get internet pass in that block where our campus director sit "
+    slug:
+        "block_a_main_gate",
+
+    hint:
+        "Look near the main entrance of Block A."
 },
 
-{
-slug:"block_a_computer_lab_2",
-hint:"Find another place filled with computers and digital technology with pencil drawing "
-},
 
 {
-slug:"block_a_chemistry_lab",
-hint:"Look for the place where reaction remind as changing of colour near pencil drawing"
+    slug:
+        "block_a_computer_lab_1",
+
+    hint:
+        "Look for the place where we get internet pass in that block where our campus director sit."
 },
 
-{
-slug:"block_a_park_1",
-hint:"Look under the tree which knowns as fruits king "
-},
 
 {
-slug:"block_a_park_2",
-hint:"Find another green space on campus. where live band oraganise "
+    slug:
+        "block_a_computer_lab_2",
+
+    hint:
+        "Find another place filled with computers and digital technology with pencil drawing."
 },
 
-{
-slug:"block_a_basketball_court",
-hint:"Look where ball search for the basket."
-},
 
 {
-slug:"block_a_water_cooler",
-hint:"Find the place where everyone goes for a refreshing drink. connecting to medical room"
+    slug:
+        "block_a_chemistry_lab",
+
+    hint:
+        "Look for the place where reaction reminds us changing of colour near pencil drawing."
 },
 
-{
-slug:"block_a_staircase",
-hint:"Look for the path that connects different floors. in that block where our kuka robort present"
-},
 
 {
-slug:"block_b_ground_floor",
-hint:"Head towards the ground level of janmastami celebration block."
+    slug:
+        "block_a_park_1",
+
+    hint:
+        "Look under the tree which is known as fruits king."
 },
 
-{
-slug:"block_b_first_floor",
-hint:"Find the next near that room where head of CSE depart. sit  ."
-},
 
 {
-slug:"block_b_second_floor",
-hint:"Find the second floor where lift installation is pending (in DIET department)"
+    slug:
+        "block_a_park_2",
+
+    hint:
+        "Find another green space on campus where live band is organised."
 },
 
-{
-slug:"block_b_third_floor",
-hint:"Find the third floor of Block B."
-},
 
 {
-    slug:"block_b_room_104",
-    hint:"First identify the block: it is the 2nd letter of the English alphabet. Then solve: 52 × 2 = ?. The answer reveals the room."
+    slug:
+        "block_a_basketball_court",
+
+    hint:
+        "Look where ball searches for the basket."
 },
 
-{
-    slug:"block_b_room_108",
-    hint:"First identify the block: count 25 letters backward from Z. Then solve: 216 ÷ 2 = ?. The answer reveals the room."
-},
 
 {
-    slug:"block_b_room_204",
-    hint:"Your block is the 2nd letter of the English alphabet. Now solve: 150 + 54 = ?. The answer reveals the room."
+    slug:
+        "block_a_water_cooler",
+
+    hint:
+        "Find the place where everyone goes for a refreshing drink, connecting to medical room."
 },
 
-{
-    slug:"block_b_room_208",
-    hint:"Your block is found by counting 25 letters backward from Z. Now solve: 52 × 4 = ?. The answer reveals the room."
-},
 
 {
-    slug:"block_b_room_304",
-    hint:"The block is the 2nd letter of the English alphabet. Now solve: 152 × 2 = ?. The answer reveals the room."
+    slug:
+        "block_a_staircase",
+
+    hint:
+        "Look for the path that connects different floors in that block where our KUKA robot is present."
 },
 
-{
-    slug:"block_b_room_308",
-    hint:"Count 25 letters backward from Z to identify the block. Then solve: 154 × 2 = ?. The answer reveals the room."
-},
 
 {
-    slug:"block_b_room_404",
-    hint:"Identify the block using the 2nd letter of the English alphabet. Then solve: 202 × 2 = ?. The answer reveals the room."
+    slug:
+        "block_b_ground_floor",
+
+    hint:
+        "Head towards the ground level of Janmashtami celebration block."
 },
 
-{
-    slug:"block_b_room_408",
-    hint:"Count 25 letters backward from Z to identify the block. Then solve: 204 × 2 = ?. The answer reveals the room."
-},
-{
-slug:"block_b_staircase",
-hint:"Find the staircase connecting Block B floors."
-},
 
 {
-slug:"block_b_water_cooler",
-hint:"Look for the water cooler in Block B."
+    slug:
+        "block_b_first_floor",
+
+    hint:
+        "Find the next near that room where Head of CSE department sits."
 },
 
-{
-slug:"block_c_main_area",
-hint:"next waiting for u near Virtual Reality lab"
-},
 
 {
-slug:"block_c_first_floor",
-hint:"Find the first floor of Block C."
+    slug:
+        "block_b_second_floor",
+
+    hint:
+        "Find the second floor where lift installation is pending in DIET department."
 },
 
-{
-slug:"block_c_second_floor",
-hint:"Find the second floor of Block C."
-},
 
 {
-slug:"block_c_water_cooler",
-hint:"Find the water cooler in Block C."
+    slug:
+        "block_b_third_floor",
+
+    hint:
+        "Find the third floor of Block B."
 },
 
-{
-slug:"campus_flag_1",
-hint:"Look carefully near one of the campus flags."
-},
 
 {
-slug:"campus_flag_2",
-hint:"Find another flag somewhere around the campus."
+    slug:
+        "block_b_room_104",
+
+    hint:
+        "First identify the block: it is the 2nd letter of the English alphabet. Then solve: 52 × 2 = ?. The answer reveals the room."
 },
 
-{
-slug:"campus_flag_3",
-hint:"Search around the third campus flag."
-},
 
 {
-slug:"campus_canteen",
-hint:"Look where students go when they are hungry."
+    slug:
+        "block_b_room_108",
+
+    hint:
+        "First identify the block: count 25 letters backward from Z. Then solve: 216 ÷ 2 = ?. The answer reveals the room."
 },
 
-{
-slug:"innovation_lab",
-hint:"Find the place innovatin take place"
-},
 
 {
-slug:"campus_seminar_hall",
-hint:"Look for the hall where SIH presentations take place."
+    slug:
+        "block_b_room_204",
+
+    hint:
+        "Your block is the 2nd letter of the English alphabet. Now solve: 150 + 54 = ?. The answer reveals the room."
+},
+
+
+{
+    slug:
+        "block_b_room_208",
+
+    hint:
+        "Your block is found by counting 25 letters backward from Z. Now solve: 52 × 4 = ?. The answer reveals the room."
+},
+
+
+{
+    slug:
+        "block_b_room_304",
+
+    hint:
+        "The block is the 2nd letter of the English alphabet. Now solve: 152 × 2 = ?. The answer reveals the room."
+},
+
+
+{
+    slug:
+        "block_b_room_308",
+
+    hint:
+        "Count 25 letters backward from Z to identify the block. Then solve: 154 × 2 = ?. The answer reveals the room."
+},
+
+
+{
+    slug:
+        "block_b_room_404",
+
+    hint:
+        "Identify the block using the 2nd letter of the English alphabet. Then solve: 202 × 2 = ?. The answer reveals the room."
+},
+
+
+{
+    slug:
+        "block_b_room_408",
+
+    hint:
+        "Count 25 letters backward from Z to identify the block. Then solve: 204 × 2 = ?. The answer reveals the room."
+},
+
+
+{
+    slug:
+        "block_b_staircase",
+
+    hint:
+        "Find the staircase connecting Block B floors."
+},
+
+
+{
+    slug:
+        "block_b_water_cooler",
+
+    hint:
+        "Look for the water cooler in Block B."
+},
+
+
+{
+    slug:
+        "block_c_main_area",
+
+    hint:
+        "Next waiting for you near Virtual Reality lab."
+},
+
+
+{
+    slug:
+        "block_c_first_floor",
+
+    hint:
+        "Find the first floor of Block C."
+},
+
+
+{
+    slug:
+        "block_c_second_floor",
+
+    hint:
+        "Find the second floor of Block C."
+},
+
+
+{
+    slug:
+        "block_c_water_cooler",
+
+    hint:
+        "Find the water cooler in Block C."
+},
+
+
+{
+    slug:
+        "campus_flag_1",
+
+    hint:
+        "Look carefully near one of the campus flags."
+},
+
+
+{
+    slug:
+        "campus_flag_2",
+
+    hint:
+        "Find another flag somewhere around the campus."
+},
+
+
+{
+    slug:
+        "campus_flag_3",
+
+    hint:
+        "Search around the third campus flag."
+},
+
+
+{
+    slug:
+        "campus_canteen",
+
+    hint:
+        "Look where students go when they are hungry."
+},
+
+
+{
+    slug:
+        "innovation_lab",
+
+    hint:
+        "Find the place where innovation takes place."
+},
+
+
+{
+    slug:
+        "campus_seminar_hall",
+
+    hint:
+        "Look for the hall where SIH presentations take place."
 }
 
 ];
+
+
+
+/* =========================================
+   FINAL DESTINATION
+========================================= */
+
+const FINAL_LOCATION =
+    "block_b_room_409";
+
+const FINAL_HINT =
+    "🏆 FINAL DESTINATION: Room 409, B Block. Find the FINAL QR code here.";
+
 
 
 /* =========================================
@@ -1623,6 +1937,7 @@ let currentQuestion = null;
 let selectedAnswer = null;
 
 
+
 /* =========================================
    RANDOM QUESTION
 ========================================= */
@@ -1630,15 +1945,17 @@ let selectedAnswer = null;
 function getRandomQuestion(level) {
 
     const bank =
-        QUESTIONS[level] || QUESTIONS[1];
+        QUESTIONS[level] ||
+        QUESTIONS[1];
 
     return bank[
         Math.floor(
-            Math.random() * bank.length
+            Math.random() *
+            bank.length
         )
     ];
-
 }
+
 
 
 /* =========================================
@@ -1649,11 +1966,12 @@ function getRandomLocation() {
 
     return LOCATIONS[
         Math.floor(
-            Math.random() * LOCATIONS.length
+            Math.random() *
+            LOCATIONS.length
         )
     ];
-
 }
+
 
 
 /* =========================================
@@ -1663,68 +1981,169 @@ function getRandomLocation() {
 function showQuestion() {
 
     const level =
-        Number(teamData.level || 1);
+        Number(
+            teamData.level || 1
+        );
+
 
     currentQuestion =
         getRandomQuestion(level);
 
+
     selectedAnswer = null;
+
 
     levelNumber.textContent =
         level;
 
+
     questionText.textContent =
         currentQuestion.q;
 
-    optionsContainer.innerHTML = "";
+
+    optionsContainer.innerHTML =
+        "";
+
 
     const letters =
-        ["A","B","C","D"];
+        [
+            "A",
+            "B",
+            "C",
+            "D"
+        ];
 
 
-    currentQuestion.options.forEach(
-        (option,index) => {
+
+    /* =========================================
+       SHUFFLE ANSWERS
+    ========================================= */
+
+    const shuffledOptions =
+        currentQuestion.options.map(
+            (option, index) => {
+
+                return {
+
+                    option:
+                        option,
+
+                    originalIndex:
+                        index
+
+                };
+
+            }
+        );
+
+
+    /* Fisher-Yates shuffle */
+
+    for (
+        let i =
+            shuffledOptions.length - 1;
+
+        i > 0;
+
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() *
+                (i + 1)
+            );
+
+
+        [
+            shuffledOptions[i],
+            shuffledOptions[j]
+        ] =
+        [
+            shuffledOptions[j],
+            shuffledOptions[i]
+        ];
+
+    }
+
+
+
+    /* =========================================
+       FIND NEW CORRECT ANSWER POSITION
+    ========================================= */
+
+    currentQuestion.shuffledAnswer =
+        shuffledOptions.findIndex(
+            item =>
+                item.originalIndex ===
+                currentQuestion.answer
+        );
+
+
+
+    /* =========================================
+       RENDER OPTIONS
+    ========================================= */
+
+    shuffledOptions.forEach(
+        ({ option }, index) => {
 
             const button =
-                document.createElement("button");
+                document.createElement(
+                    "button"
+                );
+
 
             button.className =
                 "answer-option";
 
+
             button.innerHTML = `
 
                 <div class="answer-letter">
+
                     ${letters[index]}
+
                 </div>
 
                 <div class="answer-text">
+
                     ${option}
+
                 </div>
 
             `;
+
 
 
             button.addEventListener(
                 "click",
                 () => {
 
+
                     document
                         .querySelectorAll(
                             ".answer-option"
                         )
                         .forEach(
-                            el =>
+                            el => {
+
                                 el.classList.remove(
                                     "selected"
-                                )
+                                );
+
+                            }
                         );
+
 
                     button.classList.add(
                         "selected"
                     );
 
+
                     selectedAnswer =
                         index;
+
 
                     submitAnswer.disabled =
                         false;
@@ -1741,19 +2160,31 @@ function showQuestion() {
     );
 
 
+
+    /* =========================================
+       CHALLENGE NUMBER
+    ========================================= */
+
     challengeNumber.textContent =
         Math.floor(
             Math.random() * 99
         ) + 1;
 
 
+
+    /* =========================================
+       PROGRESS
+    ========================================= */
+
     progressText.textContent =
         `Level ${level} of 5`;
+
 
     progressFill.style.width =
         `${level * 20}%`;
 
 }
+
 
 
 /* =========================================
@@ -1771,31 +2202,38 @@ function showPopup(
     popupIcon.textContent =
         icon;
 
+
     popupTitle.textContent =
         title;
+
 
     popupMessage.textContent =
         message;
 
+
     popupButton.textContent =
         buttonText;
+
 
     popupOverlay.classList.add(
         "show"
     );
 
 
-    popupButton.onclick = () => {
+    popupButton.onclick =
+        () => {
 
-        popupOverlay.classList.remove(
-            "show"
-        );
+            popupOverlay.classList.remove(
+                "show"
+            );
 
-        callback();
 
-    };
+            callback();
+
+        };
 
 }
+
 
 
 /* =========================================
@@ -1812,18 +2250,23 @@ function playWrongSound() {
                 window.webkitAudioContext
             )();
 
+
         const oscillator =
             audioContext.createOscillator();
+
 
         const gain =
             audioContext.createGain();
 
 
+
         oscillator.type =
             "sawtooth";
 
+
         oscillator.frequency.value =
             180;
+
 
 
         gain.gain.setValueAtTime(
@@ -1831,23 +2274,31 @@ function playWrongSound() {
             audioContext.currentTime
         );
 
+
         gain.gain.exponentialRampToValueAtTime(
             0.01,
             audioContext.currentTime + 0.45
         );
 
 
-        oscillator.connect(gain);
+
+        oscillator.connect(
+            gain
+        );
+
 
         gain.connect(
             audioContext.destination
         );
 
 
+
         oscillator.start();
 
+
         oscillator.stop(
-            audioContext.currentTime + 0.45
+            audioContext.currentTime +
+            0.45
         );
 
     }
@@ -1863,8 +2314,9 @@ function playWrongSound() {
 }
 
 
+
 /* =========================================
-   CORRECT SOUND
+   CORRECT ANSWER SOUND
 ========================================= */
 
 function playCorrectSound() {
@@ -1881,17 +2333,21 @@ function playCorrectSound() {
         const oscillator =
             audioContext.createOscillator();
 
+
         const gain =
             audioContext.createGain();
+
 
 
         oscillator.type =
             "sine";
 
+
         oscillator.frequency.setValueAtTime(
             600,
             audioContext.currentTime
         );
+
 
         oscillator.frequency.setValueAtTime(
             900,
@@ -1899,10 +2355,12 @@ function playCorrectSound() {
         );
 
 
+
         gain.gain.setValueAtTime(
             0.20,
             audioContext.currentTime
         );
+
 
         gain.gain.exponentialRampToValueAtTime(
             0.01,
@@ -1910,17 +2368,24 @@ function playCorrectSound() {
         );
 
 
-        oscillator.connect(gain);
+
+        oscillator.connect(
+            gain
+        );
+
 
         gain.connect(
             audioContext.destination
         );
 
 
+
         oscillator.start();
 
+
         oscillator.stop(
-            audioContext.currentTime + 0.5
+            audioContext.currentTime +
+            0.5
         );
 
     }
@@ -1936,6 +2401,7 @@ function playCorrectSound() {
 }
 
 
+
 /* =========================================
    SUBMIT ANSWER
 ========================================= */
@@ -1943,6 +2409,7 @@ function playCorrectSound() {
 submitAnswer.addEventListener(
     "click",
     async () => {
+
 
         if (
             selectedAnswer === null ||
@@ -1958,16 +2425,19 @@ submitAnswer.addEventListener(
             true;
 
 
+
         /* =================================
-           WRONG
+           WRONG ANSWER
         ================================= */
 
         if (
             selectedAnswer !==
-            currentQuestion.answer
+            currentQuestion.shuffledAnswer
         ) {
 
+
             playWrongSound();
+
 
 
             try {
@@ -1979,11 +2449,17 @@ submitAnswer.addEventListener(
                         teamId
                     );
 
+
                 await updateDoc(
                     teamRef,
                     {
+
                         attempts:
-                            (teamData.attempts || 0) + 1
+                            (
+                                teamData.attempts ||
+                                0
+                            ) + 1
+
                     }
                 );
 
@@ -1991,9 +2467,12 @@ submitAnswer.addEventListener(
 
             catch(error) {
 
-                console.error(error);
+                console.error(
+                    error
+                );
 
             }
+
 
 
             showPopup(
@@ -2017,28 +2496,33 @@ submitAnswer.addEventListener(
 
             );
 
+
             return;
 
         }
 
 
+
         /* =================================
-           CORRECT
+           CORRECT ANSWER
         ================================= */
 
         playCorrectSound();
 
 
+
         const level =
-            Number(teamData.level || 1);
+            Number(
+                teamData.level || 1
+            );
 
-
-        const location =
-            getRandomLocation();
 
 
         const newScore =
-            Number(teamData.score || 0) + 10;
+            Number(
+                teamData.score || 0
+            ) + 10;
+
 
 
         const teamRef =
@@ -2049,14 +2533,21 @@ submitAnswer.addEventListener(
             );
 
 
+
         /* =================================
-           LEVEL 1-4
+           LEVEL 1 - 4
         ================================= */
 
         if (level < 5) {
 
+
             const nextLevel =
                 level + 1;
+
+
+            const location =
+                getRandomLocation();
+
 
 
             await updateDoc(
@@ -2085,11 +2576,14 @@ submitAnswer.addEventListener(
             );
 
 
+
             teamData.score =
                 newScore;
 
+
             teamData.level =
                 nextLevel;
+
 
 
             localStorage.setItem(
@@ -2097,10 +2591,12 @@ submitAnswer.addEventListener(
                 location.slug
             );
 
+
             localStorage.setItem(
                 "currentHint",
                 location.hint
             );
+
 
 
             showPopup(
@@ -2125,11 +2621,25 @@ submitAnswer.addEventListener(
         }
 
 
+
         /* =================================
-           FINAL LEVEL
+           LEVEL 5
+           FINAL DESTINATION
         ================================= */
 
         else {
+
+
+            /*
+             IMPORTANT:
+
+             Level 5 does NOT select
+             a random location.
+
+             Every team gets the same
+             final QR location.
+            */
+
 
             await updateDoc(
                 teamRef,
@@ -2138,14 +2648,17 @@ submitAnswer.addEventListener(
                     score:
                         newScore,
 
+                    level:
+                        5,
+
                     expectedLocation:
-                        location.slug,
+                        FINAL_LOCATION,
 
                     lastHint:
-                        location.hint,
+                        FINAL_HINT,
 
                     lastLocation:
-                        location.slug,
+                        FINAL_LOCATION,
 
                     locationVerified:
                         false
@@ -2154,19 +2667,27 @@ submitAnswer.addEventListener(
             );
 
 
+
             teamData.score =
                 newScore;
 
 
+            teamData.level =
+                5;
+
+
+
             localStorage.setItem(
                 "nextLocation",
-                location.slug
+                FINAL_LOCATION
             );
+
 
             localStorage.setItem(
                 "currentHint",
-                location.hint
+                FINAL_HINT
             );
+
 
 
             showPopup(
@@ -2175,7 +2696,7 @@ submitAnswer.addEventListener(
 
                 "Final Challenge Complete!",
 
-                `Amazing! You have completed all 5 levels.\n\nNow find the FINAL QR code at: ${location.hint}`,
+                "Amazing! You have completed all 5 levels.\n\nNow reach Room 409, B Block and find the FINAL QR code.",
 
                 "📍 Go To Final Clue",
 
@@ -2194,6 +2715,7 @@ submitAnswer.addEventListener(
 );
 
 
+
 /* =========================================
    LOAD TEAM
 ========================================= */
@@ -2201,6 +2723,7 @@ submitAnswer.addEventListener(
 async function loadTeam() {
 
     try {
+
 
         const teamRef =
             doc(
@@ -2211,28 +2734,37 @@ async function loadTeam() {
 
 
         const snapshot =
-            await getDoc(teamRef);
+            await getDoc(
+                teamRef
+            );
+
 
 
         if (!snapshot.exists()) {
 
+
             localStorage.clear();
+
 
             window.location.href =
                 "index.html";
+
 
             return;
 
         }
 
 
+
         teamData =
             snapshot.data();
+
 
 
         teamName.textContent =
             teamData.name ||
             "Team";
+
 
 
         const level =
@@ -2245,23 +2777,27 @@ async function loadTeam() {
             level;
 
 
-        /* ---------------------------------
-           FINISHED
-        --------------------------------- */
 
-        if (teamData.finished) {
+        /* =================================
+           ALREADY FINISHED
+        ================================= */
+
+        if (
+            teamData.finished
+        ) {
 
             window.location.href =
-                "final.html";
+                "finish.html";
 
             return;
 
         }
 
 
-        /* ---------------------------------
+
+        /* =================================
            QR VERIFICATION
-        --------------------------------- */
+        ================================= */
 
         if (
             level > 1 &&
@@ -2276,6 +2812,11 @@ async function loadTeam() {
         }
 
 
+
+        /* =================================
+           SHOW QUESTION
+        ================================= */
+
         showQuestion();
 
     }
@@ -2287,6 +2828,7 @@ async function loadTeam() {
             error
         );
 
+
         questionText.textContent =
             "Unable to load challenge.";
 
@@ -2295,13 +2837,16 @@ async function loadTeam() {
 }
 
 
+
 /* =========================================
    START
 ========================================= */
 
 loadTeam();
 
+
 </script>
 
 </body>
+
 </html>
